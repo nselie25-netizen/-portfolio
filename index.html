@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio – Asowa N'GUESSAN</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0e1a;
+    --blue-bright: #3b82f6;
+    --cyan: #06b6d4;
+    --teal: #14b8a6;
+    --white: #f8fafc;
+    --muted: #94a3b8;
+    --card: #161d2e;
+    --border: #1e293b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+    height: 100vh;
+    overflow-y: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(6,182,212,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6,182,212,0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(10,14,26,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    height: 60px; display: flex; align-items: center;
+    justify-content: space-between; padding: 0 2rem;
+  }
+
+  .nav-logo {
+    font-family: 'Space Mono', monospace; font-size: 12px;
+    color: var(--cyan); letter-spacing: 0.05em; cursor: pointer; white-space: nowrap;
+  }
+
+  .nav-links { display: flex; gap: 0; list-style: none; }
+
+  .nav-links li a {
+    display: flex; align-items: center; gap: 0.4rem;
+    padding: 0 0.9rem; height: 60px; color: var(--muted);
+    text-decoration: none; font-size: 11px; letter-spacing: 0.05em;
+    transition: color 0.2s, background 0.2s; font-family: 'Space Mono', monospace;
+    border-bottom: 2px solid transparent; cursor: pointer; user-select: none; white-space: nowrap;
+  }
+
+  .nav-links li a:hover { color: var(--cyan); background: rgba(6,182,212,0.05); }
+  .nav-links li a.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+  .nav-num { font-size: 9px; color: var(--border); font-weight: 700; }
+  .nav-links li a.active .nav-num { color: rgba(6,182,212,0.5); }
+
+  /* PAGES */
+  .pages-wrapper { position: fixed; top: 60px; left: 0; right: 0; bottom: 0; overflow: hidden; z-index: 1; }
+
+  .page {
+    position: absolute; inset: 0; overflow-y: auto;
+    padding: 2.5rem 4rem 4rem; opacity: 0; pointer-events: none;
+    transform: translateX(50px);
+    transition: opacity 0.38s cubic-bezier(0.4,0,0.2,1), transform 0.38s cubic-bezier(0.4,0,0.2,1);
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .page.active { opacity: 1; pointer-events: all; transform: translateX(0); }
+  .page.exit-left { opacity: 0; transform: translateX(-50px); pointer-events: none; }
+  .page::-webkit-scrollbar { width: 4px; }
+  .page::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .page-indicator {
+    position: fixed; right: 1.25rem; top: 50%; transform: translateY(-50%);
+    z-index: 150; display: flex; flex-direction: column; gap: 8px;
+  }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.3s; }
+  .dot.active { background: var(--cyan); box-shadow: 0 0 8px rgba(6,182,212,0.6); transform: scale(1.5); }
+
+  /* TYPO */
+  .section-tag {
+    font-family: 'Space Mono', monospace; font-size: 10px; color: var(--cyan);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-tag::before { content: ''; width: 20px; height: 1px; background: var(--cyan); }
+  .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; line-height: 1.1; }
+  .section-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.6; max-width: 680px; }
+
+  /* BUTTONS */
+  .btn-primary {
+    background: var(--cyan); color: var(--navy); padding: 0.6rem 1.4rem; border-radius: 4px;
+    font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em;
+    transition: all 0.2s; border: none; cursor: pointer; font-family: 'Syne', sans-serif;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent; color: var(--cyan); padding: 0.6rem 1.4rem; border-radius: 4px;
+    font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em;
+    transition: all 0.2s; border: 1px solid var(--cyan); cursor: pointer; font-family: 'Syne', sans-serif;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  .btn-outline:hover { background: rgba(6,182,212,0.1); transform: translateY(-2px); }
+
+  .btn-dl {
+    background: rgba(6,182,212,0.12); color: var(--cyan); padding: 0.55rem 1.2rem; border-radius: 4px;
+    font-weight: 700; font-size: 0.8rem; letter-spacing: 0.06em;
+    transition: all 0.2s; border: 1px solid rgba(6,182,212,0.35); cursor: pointer; font-family: 'Syne', sans-serif;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+  .btn-dl:hover { background: var(--cyan); color: var(--navy); transform: translateY(-2px); }
+
+  .page-nav { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+
+  .page-footer {
+    margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .page-footer p { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); }
+  .page-footer span { color: var(--cyan); }
+
+  /* CARDS */
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem;
+  }
+  .card h4 {
+    font-family: 'Space Mono', monospace; font-size: 10px; color: var(--cyan);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.8rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+  }
+  .card p { color: var(--muted); font-size: 0.85rem; line-height: 1.7; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .grid2 .full { grid-column: 1 / -1; }
+
+  .ul { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .ul li { color: var(--muted); font-size: 0.83rem; display: flex; gap: 0.6rem; align-items: flex-start; }
+  .ul li::before { content: '▸'; color: var(--cyan); flex-shrink: 0; }
+  .ul li strong { color: var(--white); }
+
+  .badge { font-family: 'Space Mono', monospace; font-size: 10px; padding: 3px 10px; border-radius: 3px; font-weight: 700; }
+  .badge-blue  { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+  .badge-cyan  { background: rgba(6,182,212,0.15); color: var(--cyan); border: 1px solid rgba(6,182,212,0.3); }
+  .badge-teal  { background: rgba(20,184,166,0.15); color: #2dd4bf; border: 1px solid rgba(20,184,166,0.3); }
+  .badge-purple{ background: rgba(139,92,246,0.15); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); }
+  .badge-amber { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+
+  .badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+
+  .code-block {
+    background: #070b14; border: 1px solid var(--border); border-radius: 6px;
+    padding: 0.75rem 1rem; font-family: 'Space Mono', monospace;
+    font-size: 11px; color: #06b6d4; line-height: 1.8; margin-top: 0.5rem;
+  }
+  .code-block .cm { color: var(--muted); }
+
+  /* DOC READER — rendu document */
+  .doc-reader {
+    background: #0d1422; border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; margin-bottom: 1rem;
+  }
+  .doc-reader-header {
+    background: #111827; border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between;
+  }
+  .doc-reader-title {
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--cyan); letter-spacing: 0.1em;
+  }
+  .doc-reader-body {
+    padding: 1.5rem 2rem; max-height: 520px; overflow-y: auto;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+    font-size: 0.88rem; line-height: 1.8; color: var(--muted);
+  }
+  .doc-reader-body::-webkit-scrollbar { width: 4px; }
+  .doc-reader-body::-webkit-scrollbar-thumb { background: var(--border); }
+  .doc-reader-body h1 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 1.2rem 0 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+  .doc-reader-body h2 { font-size: 1rem; font-weight: 700; color: var(--cyan); margin: 1rem 0 0.4rem; }
+  .doc-reader-body h3 { font-size: 0.9rem; font-weight: 700; color: #2dd4bf; margin: 0.8rem 0 0.3rem; }
+  .doc-reader-body p { margin-bottom: 0.7rem; }
+  .doc-reader-body ul { list-style: none; padding: 0; margin: 0.4rem 0 0.8rem; }
+  .doc-reader-body ul li { padding-left: 1rem; position: relative; margin-bottom: 0.25rem; }
+  .doc-reader-body ul li::before { content: '▸'; color: var(--cyan); position: absolute; left: 0; font-size: 10px; top: 3px; }
+  .doc-reader-body strong { color: var(--white); font-weight: 600; }
+  .doc-reader-body .code { background: #070b14; border: 1px solid var(--border); border-radius: 4px; padding: 0.6rem 0.9rem; font-family: 'Space Mono', monospace; font-size: 10px; color: #06b6d4; line-height: 1.8; margin: 0.5rem 0; }
+  .doc-reader-body .note { background: rgba(6,182,212,0.06); border-left: 2px solid var(--cyan); border-radius: 0 4px 4px 0; padding: 0.6rem 1rem; margin: 0.5rem 0; font-size: 0.82rem; }
+  .doc-reader-body .separator { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+
+  /* HOME */
+  #page-home { display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - 60px); }
+  .hero-tag { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-tag::before { content: ''; width: 32px; height: 1px; background: var(--cyan); }
+  .hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 1rem; }
+  .hero h1 .name { display: block; background: linear-gradient(135deg, var(--white) 0%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero h1 .role { display: block; font-size: clamp(1rem, 2vw, 1.8rem); font-weight: 400; color: var(--muted); -webkit-text-fill-color: var(--muted); margin-top: 0.5rem; }
+  .hero-desc { max-width: 520px; color: var(--muted); font-size: 0.95rem; line-height: 1.8; margin: 1.5rem 0 2rem; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .stat-num { font-family: 'Space Mono', monospace; font-size: 2rem; font-weight: 700; color: var(--cyan); display: block; }
+  .stat-label { font-size: 0.78rem; color: var(--muted); }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .about-text p { color: var(--muted); line-height: 1.8; font-size: 0.92rem; margin-bottom: 1rem; }
+  .about-text p strong { color: var(--white); }
+  .info-item { display: flex; justify-content: space-between; align-items: center; padding: 0.85rem 1.25rem; background: var(--card); border: 1px solid var(--border); border-radius: 6px; border-left: 3px solid var(--cyan); margin-bottom: 0.7rem; }
+  .info-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; }
+  .info-value { font-weight: 600; font-size: 0.85rem; color: var(--white); }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  .skill-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem; transition: border-color 0.3s, transform 0.3s; position: relative; overflow: hidden; }
+  .skill-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--cyan), var(--blue-bright)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card:hover { border-color: rgba(6,182,212,0.4); transform: translateY(-3px); }
+  .skill-icon { width: 38px; height: 38px; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 0.9rem; font-size: 17px; }
+  .skill-card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.9rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-family: 'Space Mono', monospace; font-size: 10px; padding: 3px 10px; border-radius: 3px; background: rgba(6,182,212,0.1); color: var(--cyan); border: 1px solid rgba(6,182,212,0.25); }
+
+  /* EPREUVE HEADER */
+  .ep-header {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.5rem 2rem; margin-bottom: 1.5rem;
+    border-left: 4px solid var(--cyan);
+  }
+  .ep-label { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--cyan); letter-spacing: 0.2em; margin-bottom: 0.5rem; }
+  .ep-title { font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: 0.4rem; }
+  .ep-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.7; }
+
+  /* DOC CARD */
+  .doc-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    overflow: hidden; margin-bottom: 1.5rem;
+  }
+  .doc-card-head {
+    background: #111827; border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+  .doc-card-info { flex: 1; }
+  .doc-card-num { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--cyan); letter-spacing: 0.2em; margin-bottom: 0.3rem; }
+  .doc-card-title { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+  .doc-card-sub { font-size: 0.8rem; color: var(--muted); }
+  .doc-card-body { padding: 0; }
+
+  /* SCHEMA */
+  .schema-wrap { background: rgba(10,14,26,0.8); border-bottom: 1px solid var(--border); padding: 1rem 1.5rem; }
+  .schema-label { font-family: 'Space Mono', monospace; font-size: 9px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  .schema-net { display: flex; align-items: center; justify-content: center; }
+  .net-zone { flex: 1; text-align: center; }
+  .net-box { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid; min-width: 85px; }
+  .net-box.wan { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.4); }
+  .net-box.dmz { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.4); }
+  .net-box.lan { background: rgba(20,184,166,0.1); border-color: rgba(20,184,166,0.4); }
+  .net-box.fw  { background: rgba(239,68,68,0.1);  border-color: rgba(239,68,68,0.4); }
+  .net-label { font-weight: 700; font-size: 0.75rem; }
+  .net-sub { font-family: 'Space Mono', monospace; font-size: 8px; color: var(--muted); }
+  .net-icon { font-size: 15px; }
+  .net-box.wan .net-label { color: #60a5fa; }
+  .net-box.dmz .net-label { color: #fbbf24; }
+  .net-box.lan .net-label { color: #2dd4bf; }
+  .net-box.fw  .net-label { color: #f87171; }
+  .net-arrow { display: flex; flex-direction: column; align-items: center; padding: 0 0.2rem; flex-shrink: 0; }
+  .arrow-line { width: 40px; height: 1px; background: linear-gradient(90deg, rgba(6,182,212,0.3), rgba(6,182,212,0.8), rgba(6,182,212,0.3)); position: relative; }
+  .arrow-line::after { content: '▸'; position: absolute; right: -6px; top: -8px; font-size: 10px; color: var(--cyan); }
+  .arrow-label { font-family: 'Space Mono', monospace; font-size: 8px; color: var(--cyan); margin-top: 3px; }
+
+  /* CONCLUSION */
+  .quote { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--cyan); border-radius: 0 8px 8px 0; padding: 1.5rem 2rem; margin-bottom: 1.5rem; font-size: 1.05rem; color: var(--white); font-style: italic; line-height: 1.7; }
+  .evolv-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.25rem; }
+  .evolv-item { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 1.1rem; display: flex; align-items: flex-start; gap: 1rem; transition: border-color 0.2s; }
+  .evolv-item:hover { border-color: rgba(6,182,212,0.4); }
+  .evolv-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; margin-top: 5px; }
+  .evolv-item strong { display: block; font-size: 0.9rem; color: var(--white); margin-bottom: 0.2rem; }
+  .evolv-item span { font-size: 0.82rem; color: var(--muted); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 1rem; }
+    .nav-links li a { padding: 0 0.5rem; font-size: 10px; }
+    .page { padding: 2rem 1.5rem; }
+    .about-grid, .skills-grid, .grid2, .evolv-grid { grid-template-columns: 1fr; }
+    .grid2 .full { grid-column: 1; }
+    .schema-net { flex-wrap: wrap; gap: 0.5rem; justify-content: center; }
+    .page-footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="goTo('home')">ASOWA N'GUESSAN</div>
+  <ul class="nav-links">
+    <li><a onclick="goTo('home')" id="nav-home" class="active"><span class="nav-num">01</span> Accueil</a></li>
+    <li><a onclick="goTo('about')" id="nav-about"><span class="nav-num">02</span> À propos</a></li>
+    <li><a onclick="goTo('skills')" id="nav-skills"><span class="nav-num">03</span> Compétences</a></li>
+    <li><a onclick="goTo('e6')" id="nav-e6"><span class="nav-num">04</span> Épreuve E6</a></li>
+    <li><a onclick="goTo('e7')" id="nav-e7"><span class="nav-num">05</span> Épreuve E5</a></li>
+    <li><a onclick="goTo('conclusion')" id="nav-conclusion"><span class="nav-num">06</span> Conclusion</a></li>
+  </ul>
+</nav>
+
+<div class="page-indicator">
+  <div class="dot active" onclick="goTo('home')"></div>
+  <div class="dot" onclick="goTo('about')"></div>
+  <div class="dot" onclick="goTo('skills')"></div>
+  <div class="dot" onclick="goTo('e6')"></div>
+  <div class="dot" onclick="goTo('e7')"></div>
+  <div class="dot" onclick="goTo('conclusion')"></div>
+</div>
+
+<div class="pages-wrapper">
+
+  <!-- ===== PAGE 1 : ACCUEIL ===== -->
+  <div class="page active" id="page-home">
+    <section class="hero">
+      <div class="hero-tag">Portfolio BTS SIO — SISR — 2025-2026</div>
+      <h1>
+        <span class="name">Asowa N'GUESSAN</span>
+        <span class="role">Administration Systèmes & Réseaux</span>
+      </h1>
+      <p class="hero-desc">Étudiant BTS SIO option SISR, passionné par les infrastructures réseau et la sécurité. Ce portfolio regroupe mon parcours, mes épreuves E6 et E5 avec leurs documents officiels.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="goTo('e6')">Épreuve E6 →</button>
+        <button class="btn-outline" onclick="goTo('e7')">Épreuve E5 →</button>
+      </div>
+      <div class="hero-stats">
+        <div><span class="stat-num">E6</span><span class="stat-label">2 documents TP</span></div>
+        <div><span class="stat-num">E5</span><span class="stat-label">Mémoire alternance</span></div>
+        <div><span class="stat-num">SISR</span><span class="stat-label">Option réseaux</span></div>
+      </div>
+    </section>
+    <div class="page-footer">
+      <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+      <p>BTS SIO — Option <span>SISR</span></p>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 2 : À PROPOS ===== -->
+  <div class="page" id="page-about">
+    <div class="section-tag">Présentation</div>
+    <h2 class="section-title">Qui suis-je ?</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Je m'appelle <strong>Asowa N'GUESSAN</strong>, étudiant en BTS SIO (Services Informatiques aux Organisations), option <strong>SISR</strong> — Solutions d'Infrastructure, Systèmes et Réseaux.</p>
+        <p>Passionné par les infrastructures réseau et la sécurité informatique, j'ai développé des compétences concrètes : déploiement d'Active Directory, gestion PCA/PRA, segmentation réseau avec Docker et iptables, et sécurisation WordPress en alternance.</p>
+        <p>Mon objectif est d'évoluer vers un poste d'<strong>administrateur systèmes et réseaux</strong>.</p>
+        <br>
+        <button class="btn-primary" onclick="goTo('skills')">Mes compétences →</button>
+      </div>
+      <div>
+        <div class="info-item"><span class="info-label">FORMATION</span><span class="info-value">BTS SIO — Option SISR</span></div>
+        <div class="info-item"><span class="info-label">ANNÉE</span><span class="info-value">2025-2026 (2ème année)</span></div>
+        <div class="info-item"><span class="info-label">ALTERNANCE</span><span class="info-value">GRAND TRANSPORT OUVERT</span></div>
+        <div class="info-item"><span class="info-label">SPÉCIALITÉ</span><span class="info-value">Systèmes & Réseaux</span></div>
+        <div class="info-item"><span class="info-label">OBJECTIF</span><span class="info-value">Admin. Sys / Réseau</span></div>
+        <div class="info-item"><span class="info-label">ÉPREUVES</span><span class="info-value">E6 + E5 BTS SIO</span></div>
+      </div>
+    </div>
+    <div class="page-footer">
+      <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+      <p>BTS SIO — Option <span>SISR</span></p>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 3 : COMPÉTENCES ===== -->
+  <div class="page" id="page-skills">
+    <div class="section-tag">Compétences</div>
+    <h2 class="section-title">Stack technique</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🖥</div>
+        <h3>Active Directory & Windows Server</h3>
+        <div class="skill-tags"><span class="tag">AD DS</span><span class="tag">DNS</span><span class="tag">DHCP</span><span class="tag">PowerShell</span><span class="tag">GPO</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <h3>Réseau & Infrastructure</h3>
+        <div class="skill-tags"><span class="tag">LAN / WAN</span><span class="tag">DMZ</span><span class="tag">NAT</span><span class="tag">Routage IP</span><span class="tag">VLAN</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔒</div>
+        <h3>Sécurité & Filtrage</h3>
+        <div class="skill-tags"><span class="tag">iptables</span><span class="tag">Firewall</span><span class="tag">WordPress</span><span class="tag">PCA / PRA</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐳</div>
+        <h3>Virtualisation & Outils</h3>
+        <div class="skill-tags"><span class="tag">Docker</span><span class="tag">VirtualBox</span><span class="tag">Alpine Linux</span><span class="tag">Nginx</span><span class="tag">Excel / VBA</span></div>
+      </div>
+    </div>
+    <div class="page-nav">
+      <button class="btn-primary" onclick="goTo('e6')">Épreuve E6 →</button>
+      <button class="btn-outline" onclick="goTo('e7')">Épreuve E5 →</button>
+    </div>
+    <div class="page-footer">
+      <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+      <p>BTS SIO — Option <span>SISR</span></p>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 4 : ÉPREUVE E6 ===== -->
+  <div class="page" id="page-e6">
+
+    <!-- EN-TÊTE EPREUVE -->
+    <div class="ep-header">
+      <div class="ep-label">// ÉPREUVE E6 — PARCOURS DE PROFESSIONNALISATION</div>
+      <div class="ep-title">Support et mise à disposition de services informatiques</div>
+      <div class="ep-desc">
+        L'épreuve E6 évalue la capacité du candidat à mettre en œuvre des solutions techniques dans un contexte professionnel réel ou simulé. Elle s'appuie sur des travaux pratiques réalisés en formation, documentés sous forme de comptes rendus techniques. Le jury évalue la maîtrise technique, la méthodologie et la capacité à expliquer ses choix.
+      </div>
+    </div>
+
+    <div class="badges" style="margin-bottom:1.5rem;">
+      <span class="badge badge-cyan">2 documents officiels</span>
+      <span class="badge badge-blue">Travaux Pratiques</span>
+      <span class="badge badge-teal">BTS SIO 2 — 2025/2026</span>
+    </div>
+
+    <!-- DOC 1 : TP PCA/PRA -->
+    <div class="doc-card">
+      <div class="doc-card-head">
+        <div class="doc-card-info">
+          <div class="doc-card-num">// DOCUMENT 1 — E6</div>
+          <div class="doc-card-title">TP PCA / PRA — Infrastructure Active Directory</div>
+          <div class="doc-card-sub">Active Directory • DNS • DHCP • Plan de Continuité et Reprise d'Activité</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge badge-blue">Windows Server</span>
+          <span class="badge badge-cyan">Active Directory</span>
+          <a href="TP1_PCA_PRA_Asowa_NGUESSAN.docx" download class="btn-dl">⬇ Télécharger</a>
+        </div>
+      </div>
+      <div class="doc-card-body">
+        <div class="doc-reader-body" style="max-height:none; padding: 1.5rem 2rem;">
+
+          <h1>TP PCA / PRA — Infrastructure AD</h1>
+
+          <h2>1. Introduction</h2>
+          <p>Ce TP a pour objectif de mettre en place une infrastructure réseau comprenant un contrôleur de domaine, un serveur de sauvegarde et un serveur web. Il permet également de comprendre les notions de PCA (Plan de Continuité d'Activité) et PRA (Plan de Reprise d'Activité).</p>
+
+          <h2>2. Objectifs</h2>
+          <ul>
+            <li>Mettre en place un serveur Active Directory</li>
+            <li>Configurer les services DNS et DHCP</li>
+            <li>Créer des utilisateurs</li>
+            <li>Tester la connectivité avec un client</li>
+            <li>Comprendre le fonctionnement du PCA/PRA</li>
+          </ul>
+
+          <h2>3. Mise en place de l'infrastructure</h2>
+          <p>Création de la machine virtuelle <strong>SRV-AD</strong> sous Windows Server.<br>
+          Configuration du réseau en mode réseau interne.<br>
+          Configuration de l'adresse IP statique <strong>172.16.1.10</strong>.</p>
+
+          <h2>4. Installation Active Directory</h2>
+          <p>Installation du rôle <strong>AD-Domain-Services</strong> via PowerShell.<br>
+          Création du domaine <strong>btssio.local</strong>.<br>
+          Redémarrage du serveur après promotion.</p>
+
+          <h2>5. Configuration DNS et DHCP</h2>
+          <p>Vérification du DNS.<br>
+          Installation du rôle DHCP.<br>
+          Création de l'étendue d'adresses IP : <strong>172.16.1.50 à 172.16.1.150</strong>.<br>
+          Configuration de la passerelle et du DNS.</p>
+
+          <h2>6. Création des utilisateurs</h2>
+          <p>Création d'un utilisateur test (<strong>Jean Dupont</strong>).<br>
+          Attribution d'un mot de passe.<br>
+          Vérification de la création avec une commande PowerShell.</p>
+
+          <h2>7. Tests</h2>
+          <p>Test du fonctionnement du serveur avec un client.<br>
+          Vérification de l'attribution d'une adresse IP.<br>
+          Connexion avec l'utilisateur créé.</p>
+
+          <h2>8. Conclusion</h2>
+          <p>Ce TP a permis de mettre en place une infrastructure complète avec Active Directory, DNS et DHCP. Le serveur fonctionne correctement et permet de gérer les utilisateurs et les machines du réseau. Cependant, le PRA reste limité car il n'y a pas de redondance matérielle.</p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- DOC 2 : TP DOCKER -->
+    <div class="doc-card">
+      <div class="doc-card-head">
+        <div class="doc-card-info">
+          <div class="doc-card-num">// DOCUMENT 2 — E6</div>
+          <div class="doc-card-title">Évaluation — Docker & Réseaux — BTSSIO-02</div>
+          <div class="doc-card-sub">WAN • DMZ • LAN • Firewall iptables • NAT — 2025-2026</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge badge-purple">Docker</span>
+          <span class="badge badge-teal">iptables</span>
+          <a href="TP2_Docker_Reseaux_Asowa_NGUESSAN.docx" download class="btn-dl">⬇ Télécharger</a>
+        </div>
+      </div>
+      <div class="doc-card-body">
+
+        <!-- Schéma réseau -->
+        <div class="schema-wrap">
+          <div class="schema-label">// schéma réseau — architecture déployée</div>
+          <div class="schema-net">
+            <div class="net-zone"><div class="net-box wan"><div class="net-icon">☁</div><div class="net-label">WAN</div><div class="net-sub">172.30.0.0/24</div><div class="net-sub">wan_client</div></div></div>
+            <div class="net-arrow"><div class="arrow-line"></div><div class="arrow-label">HTTP:80</div></div>
+            <div class="net-zone"><div class="net-box fw"><div class="net-icon">🛡</div><div class="net-label">FIREWALL</div><div class="net-sub">iptables+NAT</div><div class="net-sub">Alpine</div></div></div>
+            <div class="net-arrow"><div class="arrow-line"></div><div class="arrow-label">HTTP:80</div></div>
+            <div class="net-zone"><div class="net-box dmz"><div class="net-icon">🌐</div><div class="net-label">DMZ</div><div class="net-sub">172.20.0.0/24</div><div class="net-sub">Nginx</div></div></div>
+            <div class="net-arrow"><div class="arrow-line"></div><div class="arrow-label">Isolé</div></div>
+            <div class="net-zone"><div class="net-box lan"><div class="net-icon">🖥</div><div class="net-label">LAN</div><div class="net-sub">172.10.0.0/24</div><div class="net-sub">lan_client</div></div></div>
+          </div>
+        </div>
+
+        <div class="doc-reader-body" style="max-height:none; padding: 1.5rem 2rem;">
+
+          <p style="margin-bottom:0.3rem"><strong>Asowa N'GUESSAN — BTS SIO 2</strong></p>
+          <p><strong>Évaluation Docker — Réseaux — BTSSIO-02 — 25-26</strong></p>
+          <hr class="separator">
+
+          <h2>Étape 1 : Création des réseaux</h2>
+          <p>Création de trois réseaux virtuels totalement isolés pour définir nos zones de sécurité.</p>
+          <div class="code">
+            docker network create --subnet 172.30.0.0/24 wan_net<br>
+            docker network create --subnet 172.20.0.0/24 dmz_net<br>
+            docker network create --subnet 172.10.0.0/24 lan_net
+          </div>
+
+          <h2>Étape 2 : Configuration du Pare-feu</h2>
+          <p>Déploiement d'un conteneur central (passerelle) connecté aux trois réseaux. Configuration d'iptables pour bloquer tout le trafic par défaut et autoriser uniquement le flux HTTP vers la DMZ et le NAT pour le LAN.</p>
+          <div class="code">
+            docker run -dit --name firewall --cap-add NET_ADMIN --cap-add NET_RAW \<br>
+            &nbsp;&nbsp;--sysctl net.ipv4.ip_forward=1 --network wan_net alpine<br>
+            docker network connect dmz_net firewall<br>
+            docker network connect lan_net firewall<br>
+            docker exec -it firewall sh<br>
+            apk update && apk add iptables iproute2<br>
+            iptables -F<br>
+            iptables -P FORWARD DROP<br>
+            iptables -A FORWARD -i eth0 -o eth1 -p tcp --dport 80 -j ACCEPT<br>
+            iptables -A FORWARD -i eth2 -o eth1 -p tcp --dport 80 -j ACCEPT<br>
+            iptables -A FORWARD -i eth2 -o eth0 -j ACCEPT<br>
+            iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+          </div>
+
+          <h2>Étape 3 : Serveur Web (DMZ)</h2>
+          <div class="code">
+            docker run -dit --name web_dmz --cap-add NET_ADMIN --network dmz_net nginx<br>
+            docker exec -it web_dmz sh<br>
+            apt update && apt install -y iproute2<br>
+            ip route add 172.10.0.0/24 via 172.20.0.2<br>
+            ip route add 172.30.0.0/24 via 172.20.0.2
+          </div>
+
+          <h2>Étape 4 : Déploiement des Clients</h2>
+          <p>Création de deux machines de test (interne et externe). Installation de curl et définition de leur route par défaut vers le pare-feu.</p>
+          <h3>Client LAN</h3>
+          <div class="code">
+            docker run -dit --name lan_client --cap-add NET_ADMIN --network lan_net alpine<br>
+            docker exec -it lan_client sh<br>
+            apk update && apk add iproute2 curl<br>
+            ip route add 172.20.0.0/24 via 172.10.0.2
+          </div>
+          <h3>Client WAN</h3>
+          <div class="code">
+            docker run -dit --name wan_client --cap-add NET_ADMIN --network wan_net alpine<br>
+            docker exec -it wan_client sh<br>
+            apk update && apk add iproute2 curl<br>
+            ip route add 172.20.0.0/24 via 172.30.0.2
+          </div>
+
+          <h2>Étape 5 : Tests et Validation</h2>
+          <p>Validation de l'architecture. Les requêtes HTTP traversent le pare-feu et le serveur web répond correctement aux deux zones.</p>
+          <div class="code">
+            docker exec -it lan_client curl http://172.20.0.3<br>
+            docker exec -it wan_client curl http://172.20.0.3
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn-outline" onclick="goTo('skills')">← Compétences</button>
+      <button class="btn-primary" onclick="goTo('e7')">Épreuve E5 →</button>
+    </div>
+    <div class="page-footer">
+      <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+      <p>BTS SIO — Épreuve <span>E6</span></p>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 5 : ÉPREUVE E5 ===== -->
+  <div class="page" id="page-e7">
+
+    <div class="ep-header" style="border-left-color: #a78bfa;">
+      <div class="ep-label" style="color:#a78bfa;">// ÉPREUVE E5 — PARCOURS DE PROFESSIONNALISATION</div>
+      <div class="ep-title">Mémoire de stage / alternance</div>
+      <div class="ep-desc">
+        L'épreuve E5 est un mémoire professionnel rédigé à partir des missions réalisées en entreprise lors du stage ou de l'alternance. Il doit démontrer la capacité du candidat à analyser une situation professionnelle réelle, à mettre en œuvre des solutions techniques adaptées, et à prendre du recul sur son expérience. Le jury évalue la qualité de l'analyse, la pertinence des solutions choisies et la clarté de la rédaction.
+      </div>
+    </div>
+
+    <div class="badges" style="margin-bottom:1.5rem;">
+      <span class="badge badge-purple">1 mémoire officiel</span>
+      <span class="badge badge-amber">Alternance 2024–2025</span>
+      <span class="badge badge-blue">GRAND TRANSPORT OUVERT</span>
+    </div>
+
+    <!-- MÉMOIRE -->
+    <div class="doc-card">
+      <div class="doc-card-head">
+        <div class="doc-card-info">
+          <div class="doc-card-num">// DOCUMENT OFFICIEL — E5</div>
+          <div class="doc-card-title">Mémoire BTS SIO — Option SISR</div>
+          <div class="doc-card-sub">Sécurisation du site WordPress monchauffeurspl.fr &amp; suivi de carburant — 2024/2025</div>
+        </div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge badge-purple">WordPress</span>
+          <span class="badge badge-amber">Excel / VBA</span>
+          <a href="MEMOIRE_E7_Asowa_NGUESSAN.docx" download class="btn-dl" style="background:rgba(139,92,246,0.12);color:#a78bfa;border-color:rgba(139,92,246,0.35);">⬇ Télécharger</a>
+        </div>
+      </div>
+      <div class="doc-card-body">
+        <div class="doc-reader-body" style="max-height:none; padding: 1.5rem 2rem;">
+
+          <h1>Mémoire BTS SIO — Option SISR</h1>
+          <p><strong>Projet :</strong> Sécurisation du site WordPress monchauffeurspl.fr et mise en place d'un suivi de carburant</p>
+          <ul>
+            <li><strong>Auteur :</strong> N'guessan Asowa</li>
+            <li><strong>Entreprise :</strong> GRAND TRANSPORT OUVERT</li>
+            <li><strong>Période :</strong> 2024 – 2025</li>
+          </ul>
+          <hr class="separator">
+
+          <h2>Introduction</h2>
+          <p>La sécurité informatique est un enjeu majeur pour les entreprises, en particulier lorsqu'elles utilisent un site web pour communiquer avec leurs clients. Un site non sécurisé peut exposer des données sensibles, nuire à l'image de l'entreprise et interrompre l'activité.</p>
+          <p>Dans le cadre de mon alternance, j'ai été chargé de sécuriser le site WordPress de l'entreprise et d'améliorer certains outils internes, notamment la gestion du carburant. Ce projet a donc deux objectifs :</p>
+          <ul>
+            <li>Sécuriser le site web contre les menaces</li>
+            <li>Mettre en place un outil de suivi du carburant fiable</li>
+          </ul>
+          <hr class="separator">
+
+          <h2>Chapitre 1 — Présentation de l'entreprise</h2>
+          <p>GRAND TRANSPORT OUVERT est une entreprise spécialisée dans le transport de marchandises. Elle utilise un site WordPress pour présenter ses services et communiquer avec ses clients. L'environnement technique comprend :</p>
+          <ul>
+            <li>Hébergement OVH</li>
+            <li>CMS WordPress</li>
+            <li>Plugins (WooCommerce, Elementor)</li>
+          </ul>
+          <p>Avant mon arrivée, aucune politique de sécurité n'était réellement mise en place.</p>
+          <hr class="separator">
+
+          <h2>Chapitre 2 — Analyse du besoin et cahier des charges</h2>
+          <h3>Problèmes identifiés — Site web</h3>
+          <ul>
+            <li>Absence de certificat SSL → échanges non sécurisés</li>
+            <li>Plugins obsolètes → failles de sécurité</li>
+            <li>Spam massif → dégradation du site (20 commentaires suspects Bitcoin/crypto en attente)</li>
+            <li>Pas de sauvegarde → risque de perte totale</li>
+          </ul>
+          <h3>Problèmes identifiés — Gestion interne</h3>
+          <ul>
+            <li>Aucun suivi du carburant</li>
+            <li>Difficulté à détecter les anomalies</li>
+            <li>Risque de vol de carburant</li>
+          </ul>
+          <h3>Besoins</h3>
+          <ul>
+            <li>Sécuriser le site web et protéger les données</li>
+            <li>Mettre en place une stratégie de sauvegarde</li>
+            <li>Créer un outil de suivi du carburant automatisé</li>
+          </ul>
+          <hr class="separator">
+
+          <h2>Chapitre 3 — Choix techniques et architecture</h2>
+          <p>Pour répondre aux problèmes de spam massif et de vulnérabilités, j'ai opté pour une stratégie de défense en plusieurs couches :</p>
+          <ul>
+            <li><strong>Mise à jour de l'environnement :</strong> Passage à la dernière version de WordPress et des plugins pour corriger les failles critiques.</li>
+            <li><strong>Antispam Bee :</strong> Plugin gratuit, conforme au RGPD, qui filtre les commentaires sans utiliser de Captcha intrusif.</li>
+            <li><strong>WP Armour :</strong> Technique du Honeypot (pot de miel) pour bloquer les robots de spam de manière invisible.</li>
+            <li><strong>Filtrage natif :</strong> Utilisation des outils internes de WordPress pour le blocage par mots-clés et adresses IP.</li>
+          </ul>
+          <hr class="separator">
+
+          <h2>Chapitre 4 — Conception détaillée</h2>
+          <h3>Audit technique</h3>
+          <p>J'ai utilisé l'outil "Santé du site" pour analyser l'état des plugins, la version PHP et les problèmes de sécurité. Résultats : PHP obsolète, plugins non à jour, absence de SSL.</p>
+          <h3>Plan de sécurisation</h3>
+          <ul>
+            <li>Mise à jour globale</li>
+            <li>Installation anti-spam</li>
+            <li>Mise en place de sauvegardes</li>
+            <li>Préparation HTTPS</li>
+          </ul>
+          <hr class="separator">
+
+          <h2>Chapitre 5 — Réalisation</h2>
+          <h3>5.1. Sécurisation multicouche du site</h3>
+
+          <div class="note"><strong>Étape 1 — Filtrage natif WordPress :</strong> Validation manuelle obligatoire du premier commentaire. Liste noire de mots-clés (btc, crypto, deposit, viagra...). Bannissement d'IP malveillantes (ex : 2.58.56.93, plages Tor 185.220.101.x).</div>
+
+          <div class="note"><strong>Étape 2 — Antispam Bee :</strong> Blocage des commentaires selon la langue (Français uniquement). Suppression automatique des spams après 5 jours.</div>
+
+          <div class="note"><strong>Étape 3 — WP Armour (Honeypot) :</strong> Champ invisible que seuls les robots remplissent → identification et blocage instantané avant soumission.</div>
+
+          <div class="note"><strong>Étape 4 — Sauvegardes :</strong> Stratégie de sauvegarde régulière incluant les fichiers du site et la base de données SQL. Continuité de l'activité garantie.</div>
+
+          <p><strong>Résultat obtenu :</strong> Cette double approche (automatique avec les plugins et manuelle avec les filtres WordPress) a permis d'éliminer la quasi-totalité des messages indésirables.</p>
+
+          <h3>5.2. Mise en place du suivi de carburant (Excel / VBA)</h3>
+          <p><strong>Objectif :</strong> Mettre en place un outil permettant de suivre la consommation de carburant des véhicules, analyser les dépenses et automatiser le traitement des données.</p>
+          <ul>
+            <li>Import des données AS24 (CSV/Excel) — Portail de gestion de flotte</li>
+            <li>Nettoyage des données (doublons, formats dates/montants)</li>
+            <li>Organisation par véhicule, date et type de dépense</li>
+          </ul>
+          <p><strong>Automatisation avec Excel :</strong></p>
+          <ul>
+            <li>Formules SI, RECHERCHEV, INDEX/EQUIV</li>
+            <li>Calcul automatique de la consommation (litres / kilomètres)</li>
+            <li>Mise en forme conditionnelle pour détecter les anomalies</li>
+          </ul>
+          <p><strong>Analyse des données :</strong></p>
+          <ul>
+            <li>Tableaux croisés dynamiques (TCD)</li>
+            <li>Analyse de la consommation par véhicule</li>
+            <li>Comparaison des dépenses par période mensuelle</li>
+          </ul>
+          <p><strong>Automatisation avec VBA :</strong></p>
+          <ul>
+            <li>Formulaire pour faciliter la saisie des données</li>
+            <li>Enregistrement automatique dans le tableau</li>
+            <li>Génération de rapports de suivi</li>
+          </ul>
+          <p><strong>Résultats :</strong> Gain de temps dans le traitement des données, réduction des erreurs humaines, meilleure visibilité sur les dépenses de carburant, aide à la détection d'anomalies ou de surconsommation.</p>
+          <hr class="separator">
+
+          <h2>Chapitre 6 — Validation et recette</h2>
+          <ul>
+            <li><strong>Site web :</strong> Vérification des mises à jour ✓ — Test anti-spam ✓ — Test sauvegarde ✓</li>
+            <li><strong>Excel :</strong> Vérification des calculs ✓ — Tests des automatisations ✓ — Validation par l'entreprise ✓</li>
+          </ul>
+          <hr class="separator">
+
+          <h2>Chapitre 7 — Bilan personnel</h2>
+          <p><strong>Compétences développées :</strong> Cybersécurité WordPress, analyse de vulnérabilités, automatisation Excel / VBA.</p>
+          <p><strong>Difficultés rencontrées :</strong> Compréhension des outils de sécurité, mise en place des automatisations.</p>
+          <hr class="separator">
+
+          <h2>Chapitre 8 — Perspectives</h2>
+          <ul>
+            <li><strong>Activation complète du HTTPS :</strong> Finaliser l'installation du certificat SSL via l'hébergeur OVH.</li>
+            <li><strong>Mise à jour de l'environnement serveur :</strong> Migration vers PHP 8.3.</li>
+            <li><strong>Monitoring :</strong> Mise en place d'un outil de surveillance pour être alerté en temps réel.</li>
+          </ul>
+          <hr class="separator">
+
+          <h2>Conclusion</h2>
+          <p>Ce projet m'a permis de sécuriser un site web réel et de mettre en place un outil de gestion utile pour l'entreprise. Il m'a permis de développer des compétences techniques en cybersécurité et en gestion de données.</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <button class="btn-outline" onclick="goTo('e6')">← Épreuve E6</button>
+      <button class="btn-primary" onclick="goTo('conclusion')">Conclusion →</button>
+    </div>
+    <div class="page-footer">
+      <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+      <p>BTS SIO — Épreuve <span>E5</span></p>
+    </div>
+  </div>
+
+  <!-- ===== PAGE 6 : CONCLUSION ===== -->
+  <div class="page" id="page-conclusion">
+    <div class="section-tag">Bilan</div>
+    <h2 class="section-title">Conclusion</h2>
+    <div class="quote">
+      « Ces projets m'ont démontré que la maîtrise technique et la réflexion méthodique sont deux piliers indissociables d'un bon administrateur système et réseau. »
+    </div>
+    <p style="color:var(--muted);line-height:1.8;max-width:660px;margin-bottom:1.75rem;font-size:0.92rem;">
+      L'épreuve E6 m'a permis de maîtriser l'infrastructure Active Directory, la segmentation réseau avec Docker et la gestion de la continuité d'activité. L'épreuve E5, à travers mon alternance chez GRAND TRANSPORT OUVERT, m'a confronté à des problématiques réelles de cybersécurité et d'automatisation.
+    </p>
+    <div class="section-tag">Objectifs de progression</div>
+    <div class="evolv-grid">
+      <div class="evolv-item"><div class="evolv-dot"></div><div><strong>Haute disponibilité</strong><span>Clusters, failover, load balancing</span></div></div>
+      <div class="evolv-item"><div class="evolv-dot"></div><div><strong>Supervision réseau</strong><span>Zabbix, Nagios, Grafana</span></div></div>
+      <div class="evolv-item"><div class="evolv-dot"></div><div><strong>Sécurité avancée</strong><span>VPN, IDS/IPS, VLAN</span></div></div>
+      <div class="evolv-item"><div class="evolv-dot"></div><div><strong>Cloud & DevOps</strong><span>Azure, Kubernetes, CI/CD</span></div></div>
+    </div>
+    <div class="page-nav">
+      <button class="btn-outline" onclick="goTo('home')">← Retour à l'accueil</button>
+    </div>
+    <div class="page-footer">
+      <p>© 2026 — <span>Asowa N'GUESSAN</span> — Portfolio BTS SIO SISR</p>
+      <p>Épreuves <span>E6</span> & <span>E5</span> — Parcours de Professionnalisation</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const pages = ['home','about','skills','e6','e7','conclusion'];
+  let current = 'home';
+  let transitioning = false;
+
+  function goTo(id) {
+    if (id === current || transitioning) return;
+    transitioning = true;
+    const prev = document.getElementById('page-' + current);
+    const next = document.getElementById('page-' + id);
+    prev.classList.add('exit-left');
+    setTimeout(() => {
+      prev.classList.remove('active','exit-left');
+      next.classList.add('active');
+      next.scrollTop = 0;
+      transitioning = false;
+    }, 380);
+    document.getElementById('nav-' + current).classList.remove('active');
+    document.getElementById('nav-' + id).classList.add('active');
+    const dots = document.querySelectorAll('.dot');
+    dots[pages.indexOf(current)].classList.remove('active');
+    dots[pages.indexOf(id)].classList.add('active');
+    current = id;
+  }
+
+  document.addEventListener('keydown', e => {
+    const idx = pages.indexOf(current);
+    if ((e.key === 'ArrowRight' || e.key === 'ArrowDown') && idx < pages.length - 1) goTo(pages[idx+1]);
+    if ((e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   && idx > 0) goTo(pages[idx-1]);
+  });
+
+  let startX = 0;
+  document.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    const idx = pages.indexOf(current);
+    if (dx < -60 && idx < pages.length-1) goTo(pages[idx+1]);
+    if (dx > 60  && idx > 0) goTo(pages[idx-1]);
+  });
+</script>
+</body>
+</html>
