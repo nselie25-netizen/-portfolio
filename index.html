@@ -3,188 +3,582 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio – Asowa N'GUESSAN | BTS SIO SISR</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Portfolio – Asowa N'GUESSAN</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050810;--bg2:#0c1120;--bg3:#111827;--sur:#0f1929;--brd:#1a2540;--brd2:#243050;--cy:#22d3ee;--cy2:#06b6d4;--vi:#818cf8;--vi2:#6366f1;--gn:#34d399;--am:#fbbf24;--wh:#f1f5f9;--wh2:#e2e8f0;--mu:#64748b;--mu2:#94a3b8;}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--wh);font-family:'Inter',sans-serif;overflow:hidden;height:100vh;}
+/* ─── VARIABLES ─── */
+:root {
+  --bg:     #0d0a14;
+  --bg2:    #120d1c;
+  --sur:    #160f22;
+  --sur2:   #1a1228;
+  --brd:    #2a1640;
+  --brd2:   #3a2055;
+  --cy:     #a855f7;
+  --cy-dim: rgba(168,85,247,.08);
+  --vi:     #f472b6;
+  --vi-dim: rgba(244,114,182,.08);
+  --gn:     #fb923c;
+  --am:     #f9a8d4;
+  --wh:     #f5f0ff;
+  --wh2:    #ddd6fe;
+  --mu:     #6b4f7a;
+  --mu2:    #a07ab8;
+}
 
-.glow-a{position:fixed;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,0.055) 0%,transparent 70%);top:-250px;left:-150px;pointer-events:none;z-index:0;}
-.glow-b{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(129,140,248,0.045) 0%,transparent 70%);bottom:-200px;right:-150px;pointer-events:none;z-index:0;}
+/* ─── RESET ─── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--wh);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:500;height:58px;background:rgba(5,8,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;}
-.nbrand{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--cy);cursor:pointer;display:flex;align-items:center;gap:8px;}
-.nbdot{width:6px;height:6px;border-radius:50%;background:var(--cy);box-shadow:0 0 8px var(--cy);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.nlinks{display:flex;list-style:none;}
-.nlinks li a{display:flex;align-items:center;gap:6px;padding:0 1rem;height:58px;color:var(--mu);font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s,background .2s;text-decoration:none;}
-.nlinks li a:hover{color:var(--wh2);background:rgba(255,255,255,.03);}
-.nlinks li a.active{color:var(--cy);border-bottom-color:var(--cy);}
-.nn{font-size:9px;color:var(--brd2);}
-.nlinks li a.active .nn{color:rgba(34,211,238,.4);}
+/* ─── AMBIENT GLOWS ─── */
+.ga, .gb, .gc {
+  position: fixed; border-radius: 50%;
+  pointer-events: none; z-index: 0;
+  filter: blur(1px);
+}
+.ga {
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(168,85,247,.09) 0%, transparent 65%);
+  top: -300px; left: -200px;
+}
+.gb {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(244,114,182,.07) 0%, transparent 65%);
+  bottom: -200px; right: -150px;
+}
+.gc {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(251,146,60,.05) 0%, transparent 65%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+}
 
-.ind{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:400;display:flex;flex-direction:column;gap:10px;}
-.idot{width:5px;height:5px;border-radius:50%;background:var(--brd2);cursor:pointer;transition:all .3s;}
-.idot.active{background:var(--cy);box-shadow:0 0 10px rgba(34,211,238,.7);transform:scale(1.6);}
+/* ─── GRID OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(168,85,247,.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168,85,247,.022) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none; z-index: 0;
+}
 
-.wrap{position:fixed;top:58px;left:0;right:0;bottom:0;overflow:hidden;z-index:1;}
-.page{position:absolute;inset:0;overflow-y:auto;padding:3rem 5rem 5rem;opacity:0;pointer-events:none;transform:translateY(24px);transition:opacity .4s cubic-bezier(.4,0,.2,1),transform .4s cubic-bezier(.4,0,.2,1);scrollbar-width:thin;scrollbar-color:var(--brd2) transparent;}
-.page::-webkit-scrollbar{width:3px;}
-.page::-webkit-scrollbar-thumb{background:var(--brd2);}
-.page.active{opacity:1;pointer-events:all;transform:translateY(0);}
-.page.out{opacity:0;transform:translateY(-20px);pointer-events:none;}
+/* ─── NAV ─── */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index: 500;
+  height: 56px;
+  background: rgba(13,10,20,.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(42,22,64,.8);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+}
+.nbrand {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; color: var(--cy);
+  cursor: pointer; letter-spacing: .08em;
+  display: flex; align-items: center; gap: 10px;
+  transition: opacity .2s;
+}
+.nbrand:hover { opacity: .8; }
+.nbdot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cy);
+  box-shadow: 0 0 12px rgba(168,85,247,.8), 0 0 24px rgba(168,85,247,.3);
+  animation: breathe 3s ease-in-out infinite;
+}
+@keyframes breathe {
+  0%,100% { transform: scale(1); opacity:1; }
+  50% { transform: scale(.7); opacity:.5; }
+}
 
-.lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cy);letter-spacing:.25em;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.lbl::before{content:'';width:24px;height:1px;background:var(--cy);}
-.ttl{font-size:clamp(2rem,4vw,3rem);font-weight:600;letter-spacing:-.04em;line-height:1.1;margin-bottom:.5rem;}
+.nlinks { display:flex; list-style:none; }
+.nlinks li a {
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 .9rem; height: 56px;
+  color: var(--mu2); font-size: 10.5px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .05em; cursor: pointer;
+  border-bottom: 1.5px solid transparent;
+  transition: color .2s, border-color .2s, background .2s;
+  text-decoration: none; white-space: nowrap;
+}
+.nlinks li a:hover { color: var(--wh2); background: rgba(255,255,255,.025); }
+.nlinks li a.active { color: var(--cy); border-bottom-color: var(--cy); }
+.nn { font-size: 8px; color: var(--brd2); }
+.nlinks li a.active .nn { color: rgba(168,85,247,.35); }
 
-.btn{display:inline-flex;align-items:center;gap:6px;padding:.6rem 1.4rem;border-radius:6px;font-size:12px;font-weight:600;letter-spacing:.06em;cursor:pointer;transition:all .2s;text-decoration:none;font-family:'Inter',sans-serif;border:none;}
-.btn-c{background:var(--cy);color:#050810;}
-.btn-c:hover{background:#67e8f9;transform:translateY(-2px);}
-.btn-g{background:transparent;color:var(--mu2);border:1px solid var(--brd2);}
-.btn-g:hover{color:var(--wh2);border-color:var(--mu);transform:translateY(-2px);}
+/* ─── DOTS INDICATOR ─── */
+.ind {
+  position: fixed; right: 18px; top: 50%; transform: translateY(-50%);
+  z-index: 400; display: flex; flex-direction: column; gap: 10px;
+}
+.idot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--brd2); cursor: pointer;
+  transition: all .35s cubic-bezier(.4,0,.2,1);
+}
+.idot.active {
+  background: var(--cy);
+  box-shadow: 0 0 12px rgba(168,85,247,.8);
+  transform: scale(2);
+}
 
-.pnav{display:flex;gap:10px;margin-top:2.5rem;flex-wrap:wrap;}
-.pfooter{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--brd);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu);}
-.pfooter span{color:var(--cy);}
+/* ─── PAGES ─── */
+.wrap { position:fixed; top:56px; left:0; right:0; bottom:0; overflow:hidden; z-index:1; }
+.page {
+  position: absolute; inset: 0;
+  overflow-y: auto;
+  padding: 3.5rem 5.5rem 5rem;
+  opacity: 0; pointer-events: none;
+  transform: translateY(30px);
+  transition: opacity .45s cubic-bezier(.4,0,.2,1), transform .45s cubic-bezier(.4,0,.2,1);
+  scrollbar-width: thin; scrollbar-color: var(--brd2) transparent;
+}
+.page::-webkit-scrollbar { width: 2px; }
+.page::-webkit-scrollbar-thumb { background: var(--brd2); }
+.page.active { opacity:1; pointer-events:all; transform:translateY(0); }
+.page.out { opacity:0; transform:translateY(-20px); pointer-events:none; }
 
-/* HOME */
-#page-home{display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 58px);}
-.h-eye{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cy);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;}
-.h-eye::before{content:'';width:36px;height:1px;background:var(--cy);}
-.h-name{font-size:clamp(3rem,9vw,6.5rem);font-weight:600;letter-spacing:-.04em;line-height:.95;background:linear-gradient(135deg,#f1f5f9 30%,#22d3ee 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.6rem;}
-.h-role{font-size:clamp(1rem,2.5vw,1.6rem);font-weight:300;color:var(--mu2);letter-spacing:-.01em;margin-bottom:1.5rem;}
-.h-desc{max-width:500px;color:var(--mu);font-size:.92rem;line-height:1.8;margin-bottom:2.5rem;}
-.h-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:3rem;}
-.h-kpi{display:flex;gap:3rem;padding-top:2rem;border-top:1px solid var(--brd);}
-.kv{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:500;color:var(--cy);display:block;}
-.kl{font-size:11px;color:var(--mu);margin-top:2px;}
+/* ─── TYPOGRAPHY ─── */
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--cy);
+  letter-spacing: .28em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+}
+.eyebrow::before { content:''; width:28px; height:1px; background:var(--cy); flex-shrink:0; }
 
-/* ABOUT */
-.ab-lay{display:grid;grid-template-columns:1.2fr 1fr;gap:4rem;align-items:start;margin-top:1.5rem;}
-.ab-text p{color:var(--mu2);line-height:1.85;font-size:.92rem;margin-bottom:1rem;}
-.ab-text strong{color:var(--wh2);font-weight:600;}
-.irow{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.2rem;background:var(--sur);border:1px solid var(--brd);border-radius:8px;border-left:3px solid var(--cy);margin-bottom:8px;}
-.ik{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu);letter-spacing:.1em;}
-.iv{font-size:13px;font-weight:500;color:var(--wh2);}
+h2.sect {
+  font-size: clamp(2rem,4vw,2.8rem);
+  font-weight: 600; letter-spacing: -.04em;
+  line-height: 1.1; color: var(--wh);
+  margin-bottom: .5rem;
+}
 
-/* SKILLS */
-.sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:1.5rem;}
-.sk-card{background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1.4rem;transition:border-color .3s,transform .25s;position:relative;overflow:hidden;}
-.sk-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cy),var(--vi));transform:scaleX(0);transform-origin:left;transition:transform .35s;}
-.sk-card:hover::after{transform:scaleX(1);}
-.sk-card:hover{border-color:rgba(34,211,238,.3);transform:translateY(-4px);}
-.sk-ico{width:40px;height:40px;border-radius:10px;background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:14px;}
-.sk-card h3{font-size:14px;font-weight:600;margin-bottom:12px;color:var(--wh2);}
-.sk-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.sk-t{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 10px;border-radius:4px;background:rgba(34,211,238,.08);color:var(--cy);border:1px solid rgba(34,211,238,.2);}
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: .65rem 1.5rem; border-radius: 8px;
+  font-size: 12.5px; font-weight: 600;
+  letter-spacing: .04em; cursor: pointer;
+  transition: all .2s cubic-bezier(.4,0,.2,1);
+  text-decoration: none; font-family:'Inter',sans-serif;
+  border: none; white-space: nowrap;
+}
+.btn-c { background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%); color: #fff; }
+.btn-c:hover { background: linear-gradient(135deg, #9333ea 0%, #db2777 100%); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(168,85,247,.45); }
+.btn-o { background: transparent; color: var(--mu2); border: 1px solid var(--brd2); }
+.btn-o:hover { color: var(--wh2); border-color: var(--mu); transform: translateY(-2px); }
 
-/* ÉPREUVE BANNER */
-.ep-banner{border-radius:14px;padding:1.75rem 2rem;margin-bottom:2rem;position:relative;overflow:hidden;}
-.ep-banner.e6{background:linear-gradient(135deg,rgba(34,211,238,.07) 0%,rgba(99,102,241,.04) 100%);border:1px solid rgba(34,211,238,.2);}
-.ep-banner.e5{background:linear-gradient(135deg,rgba(129,140,248,.07) 0%,rgba(251,191,36,.04) 100%);border:1px solid rgba(129,140,248,.2);}
-.ep-banner::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;}
-.ep-banner.e6::before{background:var(--cy);}
-.ep-banner.e5::before{background:var(--vi);}
-.ep-kick{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;margin-bottom:6px;}
-.e6 .ep-kick{color:var(--cy);}
-.e5 .ep-kick{color:var(--vi);}
-.ep-big{font-size:1.5rem;font-weight:600;color:var(--wh2);margin-bottom:8px;}
-.ep-desc{color:var(--mu2);font-size:.88rem;line-height:1.7;}
+/* DOC LINK */
+.doc-lnk {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: .7rem 1.6rem; border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  text-decoration: none; transition: all .25s;
+  letter-spacing: .02em;
+}
+.doc-lnk.c {
+  background: linear-gradient(135deg, #a855f7, #ec4899); color: #fff;
+}
+.doc-lnk.c:hover {
+  background: linear-gradient(135deg, #9333ea, #db2777);
+  box-shadow: 0 10px 32px rgba(168,85,247,.5);
+  transform: translateY(-2px);
+}
+.doc-lnk.v {
+  background: linear-gradient(135deg, #f472b6, #fb923c); color: #fff;
+}
+.doc-lnk.v:hover {
+  background: linear-gradient(135deg, #ec4899, #ea580c);
+  box-shadow: 0 10px 32px rgba(244,114,182,.45);
+  transform: translateY(-2px);
+}
 
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem;}
-.chip{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 12px;border-radius:20px;font-weight:500;}
-.chip-c{background:rgba(34,211,238,.1);color:var(--cy);border:1px solid rgba(34,211,238,.25);}
-.chip-v{background:rgba(129,140,248,.1);color:var(--vi);border:1px solid rgba(129,140,248,.25);}
-.chip-g{background:rgba(52,211,153,.1);color:var(--gn);border:1px solid rgba(52,211,153,.25);}
-.chip-a{background:rgba(251,191,36,.1);color:var(--am);border:1px solid rgba(251,191,36,.25);}
+/* ─── FOOTER ─── */
+.pnav { display:flex; gap:10px; margin-top:3rem; flex-wrap:wrap; }
+.pfooter {
+  margin-top: 3rem; padding-top: 1.5rem;
+  border-top: 1px solid var(--brd);
+  display: flex; justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--mu);
+}
+.pfooter span { color: var(--cy); }
 
-/* DOC BLOCK */
-.doc-block{background:var(--sur);border:1px solid var(--brd);border-radius:14px;overflow:hidden;margin-bottom:2rem;}
-.doc-top{background:var(--bg3);border-bottom:1px solid var(--brd);padding:1.25rem 1.75rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
-.doc-tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:.2em;text-transform:uppercase;margin-bottom:5px;}
-.doc-title{font-size:1.05rem;font-weight:600;color:var(--wh2);margin-bottom:4px;}
-.doc-sub{font-size:12px;color:var(--mu);}
+/* ─── HOME ─── */
+#page-home {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 56px);
+}
+.h-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px; color: var(--cy);
+  letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 1.75rem;
+  display: flex; align-items: center; gap: 14px;
+}
+.h-tag::before { content:''; width:40px; height:1px; background:var(--cy); }
 
-/* LIEN DOCUMENT — ouvre directement le fichier */
-.doc-lnk{display:inline-flex;align-items:center;gap:8px;padding:.6rem 1.3rem;border-radius:8px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;text-decoration:none;transition:all .2s;white-space:nowrap;}
-.doc-lnk.c{background:rgba(34,211,238,.1);color:var(--cy);border:1px solid rgba(34,211,238,.3);}
-.doc-lnk.c:hover{background:var(--cy);color:#050810;transform:translateY(-2px);}
-.doc-lnk.v{background:rgba(129,140,248,.1);color:var(--vi);border:1px solid rgba(129,140,248,.3);}
-.doc-lnk.v:hover{background:var(--vi);color:#050810;transform:translateY(-2px);}
+.h-name {
+  font-size: clamp(3.5rem,9.5vw,7rem);
+  font-weight: 700; letter-spacing: -.05em;
+  line-height: .9;
+  background: linear-gradient(130deg, #f5f0ff 0%, #ddd6fe 35%, #a855f7 70%, #f472b6 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: .75rem;
+}
+.h-role {
+  font-size: clamp(1rem,2.5vw,1.5rem);
+  font-weight: 300; color: var(--mu2);
+  letter-spacing: .02em; margin-bottom: 1.75rem;
+  font-style: italic;
+}
+.h-desc {
+  max-width: 480px; color: var(--mu);
+  font-size: .9rem; line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+.h-cta { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:3.5rem; }
+.h-stats {
+  display: flex; gap: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--brd);
+}
+.stat-v {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.2rem; font-weight: 500;
+  color: var(--cy); display: block;
+  line-height: 1;
+}
+.stat-l { font-size: 11px; color: var(--mu); margin-top: 6px; }
 
-/* RÉSUMÉ */
-.r-body{padding:2rem 2.5rem;}
-.r-intro{background:rgba(34,211,238,.04);border:1px solid rgba(34,211,238,.12);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;font-size:.9rem;color:var(--mu2);line-height:1.75;}
-.r-intro.v{background:rgba(129,140,248,.04);border-color:rgba(129,140,248,.12);}
-.steps{display:flex;flex-direction:column;}
-.step{display:flex;gap:1.25rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--brd);}
-.step:last-child{border-bottom:none;}
-.s-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cy);background:rgba(34,211,238,.08);border:1px solid rgba(34,211,238,.2);border-radius:6px;padding:4px 10px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
-.s-num.v{color:var(--vi);background:rgba(129,140,248,.08);border-color:rgba(129,140,248,.2);}
-.s-ttl{font-size:13px;font-weight:600;color:var(--wh2);margin-bottom:5px;}
-.s-txt{font-size:12px;color:var(--mu);line-height:1.7;}
-.s-txt strong{color:var(--mu2);font-weight:500;}
-.code{background:#030508;border:1px solid var(--brd);border-radius:8px;padding:1rem 1.25rem;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cy);line-height:1.9;margin-top:8px;overflow-x:auto;}
-.result{margin-top:1.25rem;background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.2);border-radius:8px;padding:.9rem 1.25rem;font-size:12px;color:var(--gn);}
-.result.v{background:rgba(129,140,248,.06);border-color:rgba(129,140,248,.2);color:var(--vi);}
+/* ─── ABOUT ─── */
+.ab-grid {
+  display: grid; grid-template-columns: 1.3fr 1fr;
+  gap: 4rem; align-items: start; margin-top: 2rem;
+}
+.ab-p { color:var(--mu2); line-height:1.9; font-size:.9rem; margin-bottom:1rem; }
+.ab-p strong { color:var(--wh2); font-weight:600; }
 
-/* SCHÉMA DOCKER */
-.schema-box{background:var(--bg2);border-bottom:1px solid var(--brd);padding:1.25rem 2rem;}
-.sch-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;}
-.sch-row{display:flex;align-items:center;justify-content:center;}
-.sz{flex:1;text-align:center;}
-.sb{display:inline-flex;flex-direction:column;align-items:center;gap:4px;padding:10px 14px;border-radius:10px;border:1px solid;min-width:90px;}
-.sb.wan{background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.35);}
-.sb.fw{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.35);}
-.sb.dmz{background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.35);}
-.sb.lan{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.35);}
-.sl{font-weight:700;font-size:12px;}
-.ss{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);}
-.si{font-size:16px;}
-.sb.wan .sl{color:#60a5fa;}.sb.fw .sl{color:#f87171;}.sb.dmz .sl{color:#fbbf24;}.sb.lan .sl{color:#34d399;}
-.sa{display:flex;flex-direction:column;align-items:center;padding:0 8px;flex-shrink:0;}
-.saline{width:40px;height:1px;background:linear-gradient(90deg,rgba(34,211,238,.3),rgba(34,211,238,.8),rgba(34,211,238,.3));position:relative;}
-.saline::after{content:'▸';position:absolute;right:-6px;top:-8px;font-size:10px;color:var(--cy);}
-.salbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--cy);margin-top:4px;}
+.info-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .85rem 1.2rem;
+  background: var(--sur);
+  border: 1px solid var(--brd);
+  border-radius: 8px;
+  border-left: 2px solid var(--cy);
+  margin-bottom: 8px;
+  transition: border-color .2s, background .2s;
+}
+.info-row:hover { background: var(--sur2); border-color: var(--brd2); border-left-color: var(--cy); }
+.ik { font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--mu); letter-spacing:.1em; }
+.iv { font-size:12.5px; font-weight:500; color:var(--wh2); }
 
-/* CONCLUSION */
-.q-block{background:var(--sur);border:1px solid var(--brd);border-left:3px solid var(--cy);border-radius:0 12px 12px 0;padding:2rem 2.5rem;margin-bottom:2rem;font-size:1.1rem;font-style:italic;color:var(--wh2);line-height:1.75;font-weight:300;}
-.ng{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1.5rem;}
-.nc{background:var(--sur);border:1px solid var(--brd);border-radius:10px;padding:1.1rem 1.25rem;display:flex;align-items:flex-start;gap:12px;transition:border-color .2s;}
-.nc:hover{border-color:rgba(34,211,238,.3);}
-.ndot{width:8px;height:8px;border-radius:50%;background:var(--cy);flex-shrink:0;margin-top:6px;}
-.nc strong{display:block;font-size:13px;color:var(--wh2);margin-bottom:4px;font-weight:600;}
-.nc span{font-size:12px;color:var(--mu);}
+/* ─── SKILLS ─── */
+.sk-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:2rem; }
+.sk-card {
+  background: var(--sur); border:1px solid var(--brd);
+  border-radius:14px; padding:1.5rem;
+  transition: all .3s cubic-bezier(.4,0,.2,1);
+  position: relative; overflow: hidden;
+}
+.sk-card::before {
+  content:''; position:absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(168,85,247,.03), transparent);
+  opacity:0; transition: opacity .3s;
+}
+.sk-card::after {
+  content:''; position:absolute;
+  top:0; left:0; right:0; height:1.5px;
+  background: linear-gradient(90deg, #a855f7, #ec4899, #fb923c);
+  transform: scaleX(0); transform-origin:left; transition: transform .4s;
+}
+.sk-card:hover { border-color:rgba(168,85,247,.25); transform:translateY(-5px); box-shadow:0 20px 40px rgba(0,0,0,.4); }
+.sk-card:hover::before { opacity:1; }
+.sk-card:hover::after { transform:scaleX(1); }
+.sk-ico {
+  width:42px; height:42px; border-radius:10px;
+  background: rgba(168,85,247,.07);
+  border: 1px solid rgba(168,85,247,.15);
+  display:flex; align-items:center; justify-content:center;
+  font-size:19px; margin-bottom:16px;
+}
+.sk-card h3 { font-size:13.5px; font-weight:600; margin-bottom:14px; color:var(--wh2); }
+.sk-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.sk-t {
+  font-family:'JetBrains Mono',monospace;
+  font-size:9.5px; padding:3px 10px;
+  border-radius:4px;
+  background: rgba(168,85,247,.07);
+  color: var(--cy);
+  border: 1px solid rgba(168,85,247,.18);
+  transition: all .2s;
+}
+.sk-card:hover .sk-t { background:rgba(168,85,247,.12); }
 
-@media(max-width:900px){
+/* ─── ÉPREUVE BANNER ─── */
+.ep-wrap {
+  padding: 2rem 0 3rem;
+}
+.ep-card {
+  border-radius: 20px; overflow: hidden;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.ep-head {
+  padding: 2.5rem 2.5rem 2rem;
+  position: relative;
+}
+.ep-head::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 2.5rem; right: 2.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brd2), transparent);
+}
+
+.ep-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px; letter-spacing: .22em;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.ep-title {
+  font-size: 1.8rem; font-weight: 700;
+  letter-spacing: -.03em; line-height: 1.1;
+  color: var(--wh); margin-bottom: 6px;
+}
+.ep-sub {
+  font-size: .85rem; color: var(--mu2);
+  font-style: italic; margin-bottom: 1.25rem;
+}
+.ep-desc {
+  font-size: .88rem; color: var(--mu);
+  line-height: 1.75; max-width: 680px;
+}
+
+/* E6 theming */
+.ep-card.e6 { background: linear-gradient(160deg, rgba(168,85,247,.07) 0%, rgba(236,72,153,.04) 40%, var(--sur) 100%); border: 1px solid rgba(168,85,247,.2); }
+.ep-card.e6 .ep-kicker { color: var(--cy); }
+.ep-card.e6 .ep-accent { background: linear-gradient(180deg, #a855f7, #ec4899); }
+
+.ep-card.e5 { background: linear-gradient(160deg, rgba(244,114,182,.07) 0%, rgba(251,146,60,.04) 40%, var(--sur) 100%); border: 1px solid rgba(244,114,182,.2); }
+.ep-card.e5 .ep-kicker { color: var(--vi); }
+.ep-card.e5 .ep-accent { background: linear-gradient(180deg, #f472b6, #fb923c); }
+
+.ep-accent {
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+}
+
+/* ─── PROJET CARDS ─── */
+.proj-card {
+  margin: 0 2.5rem 2rem;
+  border-radius: 14px; overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
+}
+.proj-card:hover { transform: translateY(-3px); }
+.proj-card.p1 {
+  background: linear-gradient(135deg, rgba(168,85,247,.07) 0%, rgba(168,85,247,.02) 100%);
+  border: 1px solid rgba(168,85,247,.25);
+  box-shadow: 0 4px 40px rgba(168,85,247,.06);
+}
+.proj-card.p1:hover { box-shadow: 0 20px 60px rgba(168,85,247,.15); border-color: rgba(168,85,247,.4); }
+.proj-card.p2 {
+  background: linear-gradient(135deg, rgba(244,114,182,.07) 0%, rgba(251,146,60,.03) 100%);
+  border: 1px solid rgba(244,114,182,.25);
+  box-shadow: 0 4px 40px rgba(244,114,182,.06);
+}
+.proj-card.p2:hover { box-shadow: 0 20px 60px rgba(244,114,182,.15); border-color: rgba(244,114,182,.4); }
+
+.proj-top {
+  padding: 1.75rem 2rem;
+  display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.proj-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: .22em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.p1 .proj-num { color: rgba(168,85,247,.6); }
+.p2 .proj-num { color: rgba(244,114,182,.6); }
+
+.proj-name {
+  font-size: 1.25rem; font-weight: 700;
+  letter-spacing: -.02em; color: var(--wh);
+  margin-bottom: 4px;
+}
+.proj-tagline { font-size: 12px; color: var(--mu2); margin-bottom: 14px; }
+
+.proj-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px; padding: 3px 11px;
+  border-radius: 20px; font-weight:500;
+}
+.chip-c { background: rgba(168,85,247,.09); color:var(--cy); border:1px solid rgba(168,85,247,.22); }
+.chip-v { background: rgba(244,114,182,.09); color:var(--vi); border:1px solid rgba(244,114,182,.22); }
+.chip-g { background: rgba(251,146,60,.09); color:var(--gn); border:1px solid rgba(251,146,60,.22); }
+.chip-a { background: rgba(249,168,212,.09); color:var(--am); border:1px solid rgba(249,168,212,.22); }
+
+.proj-body {
+  padding: 0 2rem 1.75rem;
+  display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.proj-summary {
+  font-size: .88rem; color: var(--mu2);
+  line-height: 1.8; max-width: 520px;
+}
+.proj-summary strong { color: var(--wh2); font-weight: 500; }
+
+.proj-meta {
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 10px; flex-shrink:0;
+}
+.proj-comp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px; color: var(--mu);
+  text-align: right; line-height: 1.6;
+}
+
+/* ─── SCHEMA RÉSEAU ─── */
+.net-schema {
+  margin: 0 2rem 1.75rem;
+  background: rgba(13,10,20,.6);
+  border: 1px solid var(--brd);
+  border-radius: 10px; padding: 1.25rem 2rem;
+}
+.net-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--mu);
+  letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.net-row { display:flex; align-items:center; justify-content:center; }
+.nz { flex:1; text-align:center; }
+.nb {
+  display: inline-flex; flex-direction:column;
+  align-items:center; gap:4px;
+  padding: 10px 14px; border-radius:10px;
+  border:1px solid; min-width:88px;
+  transition: transform .2s;
+}
+.nb:hover { transform: scale(1.05); }
+.nb.wan { background:rgba(192,132,252,.08); border-color:rgba(192,132,252,.3); }
+.nb.fw  { background:rgba(244,114,182,.08);  border-color:rgba(244,114,182,.3); }
+.nb.dmz { background:rgba(245,158,11,.08); border-color:rgba(245,158,11,.3); }
+.nb.lan { background:rgba(251,146,60,.08); border-color:rgba(251,146,60,.3); }
+.nb .ni { font-size:15px; }
+.nb .nl { font-weight:700; font-size:11px; }
+.nb .ns { font-family:'JetBrains Mono',monospace; font-size:8.5px; color:var(--mu); }
+.nb.wan .nl{color:#c084fc;} .nb.fw .nl{color:#f472b6;}
+.nb.dmz .nl{color:#f9a8d4;} .nb.lan .nl{color:#fb923c;}
+.na { display:flex; flex-direction:column; align-items:center; padding:0 6px; flex-shrink:0; }
+.nal { width:38px; height:1px; background:linear-gradient(90deg,rgba(168,85,247,.25),rgba(168,85,247,.7),rgba(168,85,247,.25)); position:relative; }
+.nal::after { content:'▸'; position:absolute; right:-6px; top:-8px; font-size:9px; color:var(--cy); }
+.nlab { font-family:'JetBrains Mono',monospace; font-size:8.5px; color:var(--cy); margin-top:4px; }
+
+/* ─── E5 MISSIONS ─── */
+.missions-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px; margin: 0 2rem 1.75rem;
+}
+.mission {
+  background: rgba(13,10,20,.5);
+  border: 1px solid var(--brd);
+  border-radius: 10px; padding: 1.25rem 1.5rem;
+  transition: border-color .2s;
+}
+.mission:hover { border-color: rgba(244,114,182,.25); }
+.mission-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--vi);
+  letter-spacing: .18em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.mission-title { font-size: 13px; font-weight: 600; color: var(--wh2); margin-bottom: 8px; }
+.mission-desc { font-size: 12px; color: var(--mu); line-height: 1.7; }
+.mission-desc strong { color: var(--mu2); font-weight: 500; }
+
+/* ─── CONCLUSION ─── */
+.quote {
+  background: var(--sur);
+  border: 1px solid var(--brd);
+  border-left: 3px solid #a855f7;
+  border-radius: 0 14px 14px 0;
+  padding: 2rem 2.5rem; margin-bottom: 2.5rem;
+  font-size: 1.05rem; font-style: italic;
+  color: var(--wh2); line-height: 1.8;
+  font-weight: 300;
+  background: linear-gradient(135deg, rgba(168,85,247,.05), rgba(236,72,153,.03), transparent);
+}
+.nc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:1.5rem; }
+.nc {
+  background: var(--sur); border:1px solid var(--brd);
+  border-radius:10px; padding:1.1rem 1.3rem;
+  display:flex; align-items:flex-start; gap:12px;
+  transition: all .25s;
+}
+.nc:hover { border-color:rgba(168,85,247,.2); background:var(--sur2); }
+.ndot { width:6px; height:6px; border-radius:50%; background: linear-gradient(135deg,#a855f7,#ec4899); flex-shrink:0; margin-top:5px; box-shadow:0 0 8px rgba(168,85,247,.6); }
+.nc strong { display:block; font-size:12.5px; color:var(--wh2); margin-bottom:3px; font-weight:600; }
+.nc span { font-size:11.5px; color:var(--mu); }
+
+/* ─── RESPONSIVE ─── */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@media(max-width:960px){
   nav{padding:0 1.25rem;}
-  .nlinks li a{padding:0 .6rem;font-size:10px;}
+  .nlinks li a{padding:0 .55rem;font-size:10px;}
   .page{padding:2rem 1.5rem;}
-  .ab-lay,.sk-grid,.ng{grid-template-columns:1fr;}
-  .h-kpi{gap:1.5rem;}
-  .sch-row{flex-wrap:wrap;gap:8px;justify-content:center;}
+  #page-home section{grid-template-columns:1fr!important;}
+  #page-home svg{display:none;}
+  .ab-grid,.sk-grid,.nc-grid,.missions-row{grid-template-columns:1fr;}
+  .h-stats{gap:1.75rem;}
+  .net-row{flex-wrap:wrap;gap:8px;justify-content:center;}
   .pfooter{flex-direction:column;gap:6px;}
-  .doc-top{flex-direction:column;align-items:flex-start;}
+  .proj-top,.proj-body{flex-direction:column;align-items:flex-start;}
+  .proj-meta{align-items:flex-start;}
 }
 </style>
 </head>
 <body>
 
-<div class="glow-a"></div>
-<div class="glow-b"></div>
+<div class="ga"></div>
+<div class="gb"></div>
+<div class="gc"></div>
 
+<!-- ─── NAV ─── -->
 <nav>
-  <div class="nbrand" onclick="goTo('home')"><div class="nbdot"></div>ASOWA N'GUESSAN</div>
+  <div class="nbrand" onclick="goTo('home')">
+    <div class="nbdot"></div>
+    ASOWA N'GUESSAN
+  </div>
   <ul class="nlinks">
-    <li><a onclick="goTo('home')" id="nav-home" class="active"><span class="nn">01</span> Accueil</a></li>
-    <li><a onclick="goTo('about')" id="nav-about"><span class="nn">02</span> À propos</a></li>
-    <li><a onclick="goTo('skills')" id="nav-skills"><span class="nn">03</span> Compétences</a></li>
-    <li><a onclick="goTo('e6')" id="nav-e6"><span class="nn">04</span> Épreuve E6</a></li>
-    <li><a onclick="goTo('e5')" id="nav-e5"><span class="nn">05</span> Épreuve E5</a></li>
-    <li><a onclick="goTo('conclusion')" id="nav-conclusion"><span class="nn">06</span> Conclusion</a></li>
+    <li><a onclick="goTo('home')" id="nav-home" class="active"><span class="nn">01</span>&nbsp;Accueil</a></li>
+    <li><a onclick="goTo('about')" id="nav-about"><span class="nn">02</span>&nbsp;À propos</a></li>
+    <li><a onclick="goTo('skills')" id="nav-skills"><span class="nn">03</span>&nbsp;Compétences</a></li>
+    <li><a onclick="goTo('e6')" id="nav-e6"><span class="nn">04</span>&nbsp;Épreuve E6</a></li>
+    <li><a onclick="goTo('e5')" id="nav-e5"><span class="nn">05</span>&nbsp;Épreuve E5</a></li>
+    <li><a onclick="goTo('conclusion')" id="nav-conclusion"><span class="nn">06</span>&nbsp;Conclusion</a></li>
   </ul>
 </nav>
 
@@ -199,348 +593,571 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:58px;background:rgba(
 
 <div class="wrap">
 
-<!-- PAGE 1 : ACCUEIL -->
+<!-- ══════════════════════════ PAGE 1 : ACCUEIL ══════════════════════════ -->
 <div class="page active" id="page-home">
-  <section style="display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 58px);">
-    <div class="h-eye">Portfolio BTS SIO — SISR — 2025-2026</div>
-    <div class="h-name">Asowa N'GUESSAN</div>
-    <div class="h-role">Administration Systèmes & Réseaux</div>
-    <p class="h-desc">Étudiant BTS SIO option SISR, passionné par les infrastructures réseau et la cybersécurité. Ce portfolio présente mes épreuves E6 et E5 avec l'intégralité de mes travaux.</p>
-    <div class="h-cta">
-      <button class="btn btn-c" onclick="goTo('e6')">Épreuve E6 →</button>
-      <button class="btn btn-g" onclick="goTo('e5')">Épreuve E5 →</button>
+  <section style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;min-height:calc(100vh - 56px);">
+    <!-- TEXTE -->
+    <div>
+      <div class="h-tag">Portfolio — BTS SIO SISR — 2025·2026</div>
+      <div class="h-name">Asowa<br>N'GUESSAN</div>
+      <div class="h-role">Administration Systèmes & Réseaux</div>
+      <p class="h-desc">Étudiant BTS SIO option SISR passionné par les infrastructures réseau et la cybersécurité. Ce portfolio présente mes épreuves E6 et E5 avec l'ensemble de mes réalisations professionnelles.</p>
+      <div class="h-cta">
+        <button class="btn btn-c" onclick="goTo('e6')">Épreuve E6 →</button>
+        <button class="btn btn-o" onclick="goTo('e5')">Épreuve E5</button>
+      </div>
+      <div class="h-stats">
+        <div><span class="stat-v">2</span><span class="stat-l">Réalisations E6</span></div>
+        <div><span class="stat-v">1</span><span class="stat-l">Mémoire E5</span></div>
+        <div><span class="stat-v">SISR</span><span class="stat-l">Option réseaux</span></div>
+      </div>
     </div>
-    <div class="h-kpi">
-      <div><span class="kv">E6</span><span class="kl">2 travaux pratiques</span></div>
-      <div><span class="kv">E5</span><span class="kl">Mémoire alternance</span></div>
-      <div><span class="kv">SISR</span><span class="kl">Option réseaux</span></div>
+
+    <!-- ILLUSTRATION SVG TECH ANIMÉE -->
+    <div style="display:flex;justify-content:center;align-items:center;">
+      <svg viewBox="0 0 420 420" width="420" height="420" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+        <defs>
+          <radialGradient id="gCy" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#a855f7" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="gVi" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f472b6" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#f472b6" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow2">
+            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Dash animé -->
+          <marker id="arrowCy" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#a855f7" opacity="0.7"/>
+          </marker>
+          <marker id="arrowVi" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#f472b6" opacity="0.7"/>
+          </marker>
+          <marker id="arrowGn" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#fb923c" opacity="0.7"/>
+          </marker>
+        </defs>
+
+        <!-- FOND HALO -->
+        <circle cx="210" cy="210" r="180" fill="url(#gCy)"/>
+        <circle cx="300" cy="150" r="100" fill="url(#gVi)"/>
+
+        <!-- ─── CONNEXIONS (lignes animées) ─── -->
+        <!-- Serveur central → Switch -->
+        <line x1="210" y1="145" x2="210" y2="195" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6" marker-end="url(#arrowCy)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.2s" repeatCount="indefinite"/>
+        </line>
+        <!-- Switch → Firewall -->
+        <line x1="175" y1="215" x2="120" y2="260" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6" marker-end="url(#arrowVi)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+        </line>
+        <!-- Switch → Docker -->
+        <line x1="245" y1="215" x2="300" y2="260" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6" marker-end="url(#arrowCy)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.8s" repeatCount="indefinite"/>
+        </line>
+        <!-- Firewall → Client 1 -->
+        <line x1="105" y1="285" x2="75" y2="340" stroke="#fb923c" stroke-width="1.2" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#arrowGn)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <!-- Firewall → Client 2 -->
+        <line x1="130" y1="290" x2="155" y2="345" stroke="#fb923c" stroke-width="1.2" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#arrowGn)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="2.3s" repeatCount="indefinite"/>
+        </line>
+        <!-- Docker → Container 1 -->
+        <line x1="285" y1="290" x2="255" y2="345" stroke="#f472b6" stroke-width="1.2" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#arrowVi)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="1.6s" repeatCount="indefinite"/>
+        </line>
+        <!-- Docker → Container 2 -->
+        <line x1="315" y1="290" x2="340" y2="345" stroke="#f472b6" stroke-width="1.2" stroke-dasharray="5,4" opacity="0.5" marker-end="url(#arrowVi)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-18" dur="2s" repeatCount="indefinite"/>
+        </line>
+        <!-- Cloud → Serveur -->
+        <line x1="210" y1="60" x2="210" y2="108" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.5" marker-end="url(#arrowCy)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.5s" repeatCount="indefinite"/>
+        </line>
+
+        <!-- ─── CLOUD / INTERNET ─── -->
+        <g filter="url(#glow)" transform="translate(210,38)">
+          <ellipse cx="0" cy="0" rx="38" ry="18" fill="#180e2a" stroke="#a855f7" stroke-width="1.5" opacity="0.9"/>
+          <ellipse cx="-15" cy="-5" rx="18" ry="14" fill="#180e2a" stroke="#a855f7" stroke-width="1.5" opacity="0.9"/>
+          <ellipse cx="15" cy="-5" rx="18" ry="14" fill="#180e2a" stroke="#a855f7" stroke-width="1.5" opacity="0.9"/>
+          <ellipse cx="0" cy="-10" rx="22" ry="14" fill="#180e2a" stroke="#a855f7" stroke-width="1.5" opacity="0.9"/>
+          <text x="0" y="5" text-anchor="middle" fill="#a855f7" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">INTERNET</text>
+          <animateTransform attributeName="transform" type="translate" values="210,38;210,34;210,38" dur="4s" repeatCount="indefinite"/>
+        </g>
+
+        <!-- ─── SERVEUR CENTRAL (Windows Server / AD) ─── -->
+        <g filter="url(#glow2)" transform="translate(210,130)">
+          <!-- Boîtier serveur -->
+          <rect x="-34" y="-26" width="68" height="52" rx="6" fill="#180f2a" stroke="#a855f7" stroke-width="2"/>
+          <!-- Bandes LED -->
+          <rect x="-26" y="-16" width="52" height="7" rx="2" fill="#200f35" stroke="#a855f7" stroke-width="0.8" opacity="0.8"/>
+          <rect x="-26" y="-5" width="52" height="7" rx="2" fill="#200f35" stroke="#a855f7" stroke-width="0.8" opacity="0.8"/>
+          <rect x="-26" y="6" width="52" height="7" rx="2" fill="#200f35" stroke="#a855f7" stroke-width="0.8" opacity="0.8"/>
+          <!-- LED verte clignotante -->
+          <circle cx="30" cy="-13" r="3" fill="#fb923c" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="30" cy="-2" r="3" fill="#a855f7" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="30" cy="9" r="3" fill="#f9a8d4" filter="url(#glow)">
+            <animate attributeName="opacity" values="1;0.4;1" dur="0.8s" repeatCount="indefinite"/>
+          </circle>
+          <text x="0" y="38" text-anchor="middle" fill="#a855f7" font-family="JetBrains Mono,monospace" font-size="9" font-weight="500">Windows Server</text>
+          <text x="0" y="50" text-anchor="middle" fill="#6b4f7a" font-family="JetBrains Mono,monospace" font-size="8">Active Directory</text>
+        </g>
+
+        <!-- ─── SWITCH RÉSEAU ─── -->
+        <g transform="translate(210,210)">
+          <rect x="-30" y="-10" width="60" height="20" rx="4" fill="#130d20" stroke="#f472b6" stroke-width="1.5"/>
+          <!-- Ports switch -->
+          <rect x="-22" y="-5" width="7" height="10" rx="1" fill="#f472b6" opacity="0.3"/>
+          <rect x="-12" y="-5" width="7" height="10" rx="1" fill="#f472b6" opacity="0.3"/>
+          <rect x="-2"  y="-5" width="7" height="10" rx="1" fill="#f472b6" opacity="0.3"/>
+          <rect x="8"   y="-5" width="7" height="10" rx="1" fill="#f472b6" opacity="0.3"/>
+          <rect x="18"  y="-5" width="7" height="10" rx="1" fill="#f472b6" opacity="0.3"/>
+          <!-- LED ports -->
+          <circle cx="-18" cy="-7" r="2" fill="#fb923c"><animate attributeName="opacity" values="1;0;1" dur="0.9s" repeatCount="indefinite"/></circle>
+          <circle cx="-8"  cy="-7" r="2" fill="#fb923c"><animate attributeName="opacity" values="1;0;1" dur="1.3s" repeatCount="indefinite"/></circle>
+          <circle cx="2"   cy="-7" r="2" fill="#fb923c"><animate attributeName="opacity" values="1;0;1" dur="0.7s" repeatCount="indefinite"/></circle>
+          <circle cx="12"  cy="-7" r="2" fill="#f9a8d4"><animate attributeName="opacity" values="1;0;1" dur="1.8s" repeatCount="indefinite"/></circle>
+          <circle cx="22"  cy="-7" r="2" fill="#fb923c"><animate attributeName="opacity" values="1;0;1" dur="1.1s" repeatCount="indefinite"/></circle>
+          <text x="0" y="25" text-anchor="middle" fill="#f472b6" font-family="JetBrains Mono,monospace" font-size="8">SWITCH L2</text>
+        </g>
+
+        <!-- ─── FIREWALL ─── -->
+        <g transform="translate(110,272)">
+          <rect x="-28" y="-22" width="56" height="44" rx="6" fill="#150b22" stroke="#f472b6" stroke-width="1.8"/>
+          <!-- Icône shield -->
+          <path d="M0,-14 L14,-8 L14,2 C14,10 0,18 0,18 C0,18 -14,10 -14,2 L-14,-8 Z" fill="rgba(244,114,182,0.15)" stroke="#f472b6" stroke-width="1.2"/>
+          <text x="0" y="5" text-anchor="middle" fill="#f472b6" font-size="11" font-weight="bold">✦</text>
+          <text x="0" y="32" text-anchor="middle" fill="#f472b6" font-family="JetBrains Mono,monospace" font-size="8.5" font-weight="500">FIREWALL</text>
+          <text x="0" y="43" text-anchor="middle" fill="#6b4f7a" font-family="JetBrains Mono,monospace" font-size="7.5">iptables</text>
+          <!-- Pulse ring -->
+          <circle cx="0" cy="-2" r="24" fill="none" stroke="#f472b6" stroke-width="1" opacity="0">
+            <animate attributeName="r" values="24;35" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.5;0" dur="2s" repeatCount="indefinite"/>
+          </circle>
+        </g>
+
+        <!-- ─── DOCKER ─── -->
+        <g transform="translate(305,272)">
+          <rect x="-30" y="-24" width="60" height="48" rx="8" fill="#100c1c" stroke="#a855f7" stroke-width="1.8"/>
+          <!-- Conteneurs Docker empilés -->
+          <rect x="-18" y="-16" width="14" height="10" rx="2" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="1"/>
+          <rect x="-2"  y="-16" width="14" height="10" rx="2" fill="rgba(168,85,247,0.2)" stroke="#a855f7" stroke-width="1"/>
+          <rect x="-18" y="-4"  width="14" height="10" rx="2" fill="rgba(244,114,182,0.2)" stroke="#f472b6" stroke-width="1"/>
+          <rect x="-2"  y="-4"  width="14" height="10" rx="2" fill="rgba(251,146,60,0.2)" stroke="#fb923c" stroke-width="1"/>
+          <text x="0" y="22" text-anchor="middle" fill="#a855f7" font-family="JetBrains Mono,monospace" font-size="8.5" font-weight="500">DOCKER</text>
+          <text x="0" y="33" text-anchor="middle" fill="#6b4f7a" font-family="JetBrains Mono,monospace" font-size="7.5">containers</text>
+        </g>
+
+        <!-- ─── CLIENTS RÉSEAU ─── -->
+        <!-- Client LAN 1 -->
+        <g transform="translate(72,352)">
+          <rect x="-18" y="-14" width="36" height="24" rx="3" fill="#130d20" stroke="#fb923c" stroke-width="1.2"/>
+          <line x1="-12" y1="-8" x2="12" y2="-8" stroke="#fb923c" stroke-width="1" opacity="0.5"/>
+          <line x1="-12" y1="-2" x2="12" y2="-2" stroke="#fb923c" stroke-width="1" opacity="0.3"/>
+          <line x1="-12" y1="4"  x2="6"  y2="4"  stroke="#fb923c" stroke-width="1" opacity="0.3"/>
+          <rect x="-6" y="10" width="12" height="4" rx="1" fill="#fb923c" opacity="0.4"/>
+          <text x="0" y="26" text-anchor="middle" fill="#fb923c" font-family="JetBrains Mono,monospace" font-size="7.5">PC-LAN</text>
+        </g>
+        <!-- Client LAN 2 -->
+        <g transform="translate(153,352)">
+          <rect x="-18" y="-14" width="36" height="24" rx="3" fill="#130d20" stroke="#fb923c" stroke-width="1.2"/>
+          <line x1="-12" y1="-8" x2="12" y2="-8" stroke="#fb923c" stroke-width="1" opacity="0.5"/>
+          <line x1="-12" y1="-2" x2="12" y2="-2" stroke="#fb923c" stroke-width="1" opacity="0.3"/>
+          <line x1="-12" y1="4"  x2="6"  y2="4"  stroke="#fb923c" stroke-width="1" opacity="0.3"/>
+          <rect x="-6" y="10" width="12" height="4" rx="1" fill="#fb923c" opacity="0.4"/>
+          <text x="0" y="26" text-anchor="middle" fill="#fb923c" font-family="JetBrains Mono,monospace" font-size="7.5">PC-LAN</text>
+        </g>
+        <!-- Container DMZ -->
+        <g transform="translate(252,352)">
+          <rect x="-18" y="-14" width="36" height="28" rx="4" fill="#100c1c" stroke="#f9a8d4" stroke-width="1.2"/>
+          <text x="0" y="-2" text-anchor="middle" fill="#f9a8d4" font-size="12">🌐</text>
+          <line x1="-10" y1="7" x2="10" y2="7" stroke="#f9a8d4" stroke-width="0.8" opacity="0.4"/>
+          <text x="0" y="24" text-anchor="middle" fill="#f9a8d4" font-family="JetBrains Mono,monospace" font-size="7.5">DMZ</text>
+        </g>
+        <!-- Container WAN -->
+        <g transform="translate(342,352)">
+          <rect x="-18" y="-14" width="36" height="28" rx="4" fill="#100c1c" stroke="#f472b6" stroke-width="1.2"/>
+          <text x="0" y="-2" text-anchor="middle" fill="#f472b6" font-size="12">☁</text>
+          <line x1="-10" y1="7" x2="10" y2="7" stroke="#f472b6" stroke-width="0.8" opacity="0.4"/>
+          <text x="0" y="24" text-anchor="middle" fill="#f472b6" font-family="JetBrains Mono,monospace" font-size="7.5">WAN</text>
+        </g>
+
+        <!-- ─── PARTICULES FLOTTANTES ─── -->
+        <circle cx="50" cy="100" r="2" fill="#a855f7" opacity="0.4">
+          <animate attributeName="cy" values="100;90;100" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="370" cy="80" r="1.5" fill="#f472b6" opacity="0.5">
+          <animate attributeName="cy" values="80;70;80" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="380" cy="200" r="2" fill="#fb923c" opacity="0.3">
+          <animate attributeName="cy" values="200;188;200" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="30" cy="280" r="1.5" fill="#f9a8d4" opacity="0.4">
+          <animate attributeName="cy" values="280;268;280" dur="4s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- LABELS FLOTTANTS -->
+        <text x="352" y="180" fill="#a855f7" font-family="JetBrains Mono,monospace" font-size="8.5" opacity="0.5">172.30.0.0</text>
+        <text x="18"  y="230" fill="#f472b6" font-family="JetBrains Mono,monospace" font-size="8.5" opacity="0.5">DROP</text>
+        <text x="340" y="240" fill="#f472b6" font-family="JetBrains Mono,monospace" font-size="8.5" opacity="0.5">:80/tcp</text>
+        <text x="90"  y="90"  fill="#fb923c" font-family="JetBrains Mono,monospace" font-size="8" opacity="0.4">btssio.local</text>
+
+      </svg>
     </div>
   </section>
-  <div class="pfooter"><p>© 2026 — <span>Asowa N'GUESSAN</span></p><p>BTS SIO — Option <span>SISR</span></p></div>
+  <div class="pfooter">
+    <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+    <p>BTS SIO — Option <span>SISR</span></p>
+  </div>
 </div>
 
-<!-- PAGE 2 : À PROPOS -->
+<!-- ══════════════════════════ PAGE 2 : À PROPOS ══════════════════════════ -->
 <div class="page" id="page-about">
-  <div class="lbl">Présentation</div>
-  <h2 class="ttl">Qui suis-je ?</h2>
-  <div class="ab-lay">
-    <div class="ab-text" style="padding-top:.5rem;">
-      <p>Je m'appelle <strong>Asowa N'GUESSAN</strong>, étudiant en BTS SIO (Services Informatiques aux Organisations), option <strong>SISR</strong> — Solutions d'Infrastructure, Systèmes et Réseaux.</p>
-      <p>Passionné par les infrastructures réseau et la sécurité informatique, j'ai développé des compétences concrètes : déploiement d'Active Directory, gestion PCA/PRA, segmentation réseau avec Docker et iptables, et sécurisation WordPress lors de mon alternance.</p>
-      <p>Mon objectif est d'évoluer vers un poste d'<strong>administrateur systèmes et réseaux</strong>.</p>
-      <br><button class="btn btn-c" onclick="goTo('skills')">Mes compétences →</button>
+  <div class="eyebrow">Présentation</div>
+  <h2 class="sect">Qui suis-je ?</h2>
+  <div class="ab-grid">
+    <div>
+      <p class="ab-p">Je m'appelle <strong>Asowa N'GUESSAN</strong>, étudiant en BTS SIO (Services Informatiques aux Organisations), option <strong>SISR</strong> — Solutions d'Infrastructure, Systèmes et Réseaux.</p>
+      <p class="ab-p">Passionné par les infrastructures réseau et la sécurité informatique, j'ai développé des compétences concrètes : déploiement d'<strong>Active Directory</strong>, gestion PCA/PRA, segmentation réseau avec <strong>Docker</strong> et iptables, et sécurisation <strong>WordPress</strong> lors de mon alternance.</p>
+      <p class="ab-p">Mon objectif est d'évoluer vers un poste d'<strong>administrateur systèmes et réseaux</strong>.</p>
+      <br>
+      <button class="btn btn-c" onclick="goTo('skills')">Mes compétences →</button>
+
+      <!-- TERMINAL ANIMÉ -->
+      <div style="margin-top:1.75rem;background:#0a0610;border:1px solid #2a1640;border-radius:10px;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:11.5px;">
+        <div style="background:#160f22;padding:.5rem 1rem;display:flex;gap:6px;align-items:center;border-bottom:1px solid #2a1640;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#f472b6;display:block;"></span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#f9a8d4;display:block;"></span>
+          <span style="width:10px;height:10px;border-radius:50%;background:#fb923c;display:block;"></span>
+          <span style="margin-left:8px;color:#6b4f7a;font-size:10px;">asowa@btssio ~ </span>
+        </div>
+        <div style="padding:1rem 1.25rem;line-height:2;" id="terminal-lines">
+          <div style="color:#6b4f7a;">$ <span style="color:#a855f7;">whoami</span></div>
+          <div style="color:#fb923c;" class="t-line">Asowa N'GUESSAN — Étudiant BTS SIO SISR</div>
+          <div style="color:#6b4f7a;margin-top:4px;">$ <span style="color:#a855f7;">cat competences.txt</span></div>
+          <div style="color:#f472b6;" class="t-line">→ Active Directory / DNS / DHCP</div>
+          <div style="color:#f472b6;" class="t-line">→ Docker / iptables / NAT</div>
+          <div style="color:#f472b6;" class="t-line">→ Cybersécurité WordPress</div>
+          <div style="color:#6b4f7a;margin-top:4px;">$ <span style="color:#a855f7;">echo $OBJECTIF</span></div>
+          <div style="color:#f9a8d4;" class="t-line">Administrateur Systèmes & Réseaux<span style="animation:blink 1s step-end infinite;color:#a855f7;">█</span></div>
+        </div>
+      </div>
     </div>
     <div>
-      <div class="irow"><span class="ik">FORMATION</span><span class="iv">BTS SIO — Option SISR</span></div>
-      <div class="irow"><span class="ik">ANNÉE</span><span class="iv">2025-2026 (2ème année)</span></div>
-      <div class="irow"><span class="ik">ALTERNANCE</span><span class="iv">Grand Transport Ouvert</span></div>
-      <div class="irow"><span class="ik">SPÉCIALITÉ</span><span class="iv">Systèmes & Réseaux</span></div>
-      <div class="irow"><span class="ik">OBJECTIF</span><span class="iv">Admin. Sys / Réseau</span></div>
-      <div class="irow"><span class="ik">ÉPREUVES</span><span class="iv">E6 + E5 — BTS SIO</span></div>
+      <div class="info-row"><span class="ik">FORMATION</span><span class="iv">BTS SIO — Option SISR</span></div>
+      <div class="info-row"><span class="ik">ANNÉE</span><span class="iv">2025-2026 (2ème année)</span></div>
+      <div class="info-row"><span class="ik">ALTERNANCE</span><span class="iv">Grand Transport Ouvert</span></div>
+      <div class="info-row"><span class="ik">SPÉCIALITÉ</span><span class="iv">Systèmes & Réseaux</span></div>
+      <div class="info-row"><span class="ik">OBJECTIF</span><span class="iv">Admin. Sys / Réseau</span></div>
+      <div class="info-row"><span class="ik">ÉPREUVES</span><span class="iv">E6 + E5 — BTS SIO</span></div>
     </div>
   </div>
-  <div class="pfooter"><p>© 2026 — <span>Asowa N'GUESSAN</span></p><p>BTS SIO — Option <span>SISR</span></p></div>
+  <div class="pfooter">
+    <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+    <p>BTS SIO — Option <span>SISR</span></p>
+  </div>
 </div>
 
-<!-- PAGE 3 : COMPÉTENCES -->
+<!-- ══════════════════════════ PAGE 3 : COMPÉTENCES ══════════════════════════ -->
 <div class="page" id="page-skills">
-  <div class="lbl">Compétences</div>
-  <h2 class="ttl">Stack technique</h2>
+  <div class="eyebrow">Compétences</div>
+  <h2 class="sect">Stack technique</h2>
   <div class="sk-grid">
-    <div class="sk-card"><div class="sk-ico">🖥</div><h3>Active Directory & Windows Server</h3><div class="sk-tags"><span class="sk-t">AD DS</span><span class="sk-t">DNS</span><span class="sk-t">DHCP</span><span class="sk-t">PowerShell</span><span class="sk-t">GPO</span></div></div>
-    <div class="sk-card"><div class="sk-ico">🌐</div><h3>Réseau & Infrastructure</h3><div class="sk-tags"><span class="sk-t">LAN / WAN</span><span class="sk-t">DMZ</span><span class="sk-t">NAT</span><span class="sk-t">Routage IP</span><span class="sk-t">VLAN</span></div></div>
-    <div class="sk-card"><div class="sk-ico">🔒</div><h3>Sécurité & Filtrage</h3><div class="sk-tags"><span class="sk-t">iptables</span><span class="sk-t">Firewall</span><span class="sk-t">WordPress</span><span class="sk-t">PCA / PRA</span></div></div>
-    <div class="sk-card"><div class="sk-ico">🐳</div><h3>Virtualisation & Outils</h3><div class="sk-tags"><span class="sk-t">Docker</span><span class="sk-t">VirtualBox</span><span class="sk-t">Alpine Linux</span><span class="sk-t">Nginx</span><span class="sk-t">Excel / VBA</span></div></div>
+    <div class="sk-card">
+      <div class="sk-ico">🖥</div>
+      <h3>Active Directory & Windows Server</h3>
+      <div class="sk-tags">
+        <span class="sk-t">AD DS</span><span class="sk-t">DNS</span><span class="sk-t">DHCP</span>
+        <span class="sk-t">PowerShell</span><span class="sk-t">GPO</span>
+      </div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-ico">🌐</div>
+      <h3>Réseau & Infrastructure</h3>
+      <div class="sk-tags">
+        <span class="sk-t">LAN / WAN</span><span class="sk-t">DMZ</span><span class="sk-t">NAT</span>
+        <span class="sk-t">Routage IP</span><span class="sk-t">VLAN</span>
+      </div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-ico">🔒</div>
+      <h3>Sécurité & Filtrage</h3>
+      <div class="sk-tags">
+        <span class="sk-t">iptables</span><span class="sk-t">Firewall</span>
+        <span class="sk-t">WordPress</span><span class="sk-t">PCA / PRA</span>
+      </div>
+    </div>
+    <div class="sk-card">
+      <div class="sk-ico">🐳</div>
+      <h3>Virtualisation & Outils</h3>
+      <div class="sk-tags">
+        <span class="sk-t">Docker</span><span class="sk-t">VirtualBox</span>
+        <span class="sk-t">Alpine Linux</span><span class="sk-t">Nginx</span><span class="sk-t">Excel / VBA</span>
+      </div>
+    </div>
   </div>
   <div class="pnav">
     <button class="btn btn-c" onclick="goTo('e6')">Épreuve E6 →</button>
-    <button class="btn btn-g" onclick="goTo('e5')">Épreuve E5 →</button>
+    <button class="btn btn-o" onclick="goTo('e5')">Épreuve E5</button>
   </div>
-  <div class="pfooter"><p>© 2026 — <span>Asowa N'GUESSAN</span></p><p>BTS SIO — Option <span>SISR</span></p></div>
+  <div class="pfooter">
+    <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+    <p>BTS SIO — Option <span>SISR</span></p>
+  </div>
 </div>
 
-<!-- PAGE 4 : ÉPREUVE E6 -->
+<!-- ══════════════════════════ PAGE 4 : ÉPREUVE E6 ══════════════════════════ -->
 <div class="page" id="page-e6">
+  <div class="ep-wrap">
 
-  <div class="ep-banner e6">
-    <div class="ep-kick">// Épreuve E6 — Parcours de professionnalisation</div>
-    <div class="ep-big">Support et mise à disposition de services informatiques</div>
-    <div class="ep-desc">L'épreuve E6 évalue la capacité à mettre en œuvre des solutions techniques dans un contexte professionnel. Elle repose sur des travaux pratiques documentés. Le jury évalue la maîtrise technique, la méthodologie et la capacité à expliquer ses choix.</div>
-  </div>
+    <!-- BANDEAU ÉPREUVE -->
+    <div class="ep-card e6">
+      <div class="ep-accent"></div>
+      <div class="ep-head">
+        <div class="ep-kicker">// Épreuve E6 — Parcours de professionnalisation — N° candidat : 02544753532</div>
+        <div class="ep-title">Support et mise à disposition<br>de services informatiques</div>
+        <div class="ep-sub">2 réalisations professionnelles — BTS SIO 2 — 2025/2026</div>
+        <p class="ep-desc">L'épreuve E6 évalue la capacité à mettre en œuvre des solutions techniques dans un contexte professionnel. Le jury s'appuie sur les documents officiels ci-dessous pour évaluer la maîtrise technique et la méthodologie.</p>
+      </div>
 
-  <div class="chips">
-    <span class="chip chip-c">2 documents officiels</span>
-    <span class="chip chip-g">Travaux Pratiques</span>
-    <span class="chip chip-c">BTS SIO 2 — 2025/2026</span>
-  </div>
+      <!-- ── PROJET 1 ── -->
+      <div class="proj-card p1">
+        <div class="proj-top">
+          <div>
+            <div class="proj-num">Réalisation professionnelle n°1</div>
+            <div class="proj-name">Projet 1 — PCA / PRA · Infrastructure Active Directory</div>
+            <div class="proj-tagline">Mise en place d'un contrôleur de domaine Windows Server avec services DNS, DHCP et stratégie de continuité</div>
+            <div class="proj-chips">
+              <span class="chip chip-c">Windows Server 2022</span>
+              <span class="chip chip-c">Active Directory</span>
+              <span class="chip chip-c">DNS / DHCP</span>
+              <span class="chip chip-c">PowerShell</span>
+              <span class="chip chip-c">PCA / PRA</span>
+              <span class="chip chip-c">VirtualBox</span>
+            </div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <p class="proj-summary">
+            Déploiement d'une infrastructure <strong>Active Directory</strong> complète sur domaine <strong>btssio.local</strong> — gestion centralisée des utilisateurs, attribution automatique des adresses IP via DHCP, résolution DNS opérationnelle, et application d'une stratégie <strong>PCA/PRA</strong> (Plan de Continuité & Reprise d'Activité).
+          </p>
+          <div class="proj-meta">
+            <div class="proj-comp">Compétences : B1.1 · B1.2 · B1.4 · B1.5 · B3.1 · B3.3</div>
+            <a href="https://nselie25-netizen.github.io/-portfolio/TP1_PCA_PRA_Asowa_NGUESSAN.docx" target="_blank" class="doc-lnk c">📄 Ouvrir le document</a>
+          </div>
+        </div>
+      </div>
 
-  <!-- TP 1 -->
-  <div class="doc-block">
-    <div class="doc-top">
-      <div>
-        <div class="doc-tag">// Document 1 — E6</div>
-        <div class="doc-title">TP PCA / PRA — Infrastructure Active Directory</div>
-        <div class="doc-sub">Active Directory • DNS • DHCP • Plan de Continuité & Reprise d'Activité</div>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <span class="chip chip-c">Windows Server</span>
-        <span class="chip chip-c">Active Directory</span>
-        <a href="https://nselie25-netizen.github.io/-portfolio/TP1_PCA_PRA_Asowa_NGUESSAN.docx" target="_blank" class="doc-lnk c">📄 Ouvrir le document</a>
-      </div>
-    </div>
-    <div class="r-body">
-      <div class="r-intro">
-        Ce TP consiste à mettre en place une infrastructure réseau complète avec un contrôleur de domaine Active Directory, DNS et DHCP sur Windows Server virtualisé, tout en appliquant les notions de <strong>PCA</strong> (Plan de Continuité d'Activité) et <strong>PRA</strong> (Plan de Reprise d'Activité).
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="s-num">ÉTAPE 1</div>
+      <!-- ── PROJET 2 ── -->
+      <div class="proj-card p2">
+        <div class="proj-top">
           <div>
-            <div class="s-ttl">Infrastructure & VM</div>
-            <div class="s-txt">Création de la machine virtuelle <strong>SRV-AD</strong> sous Windows Server sur VirtualBox. Réseau interne configuré, IP statique attribuée : <strong>172.16.1.10</strong>.</div>
+            <div class="proj-num">Réalisation professionnelle n°2</div>
+            <div class="proj-name">Projet 2 — Docker & Réseaux · Segmentation WAN / DMZ / LAN</div>
+            <div class="proj-tagline">Architecture réseau sécurisée à trois zones via Docker, pare-feu iptables et serveur web Nginx</div>
+            <div class="proj-chips">
+              <span class="chip chip-v">Docker Engine</span>
+              <span class="chip chip-v">iptables</span>
+              <span class="chip chip-v">Nginx</span>
+              <span class="chip chip-v">Alpine Linux</span>
+              <span class="chip chip-v">NAT / iproute2</span>
+              <span class="chip chip-v">VirtualBox</span>
+            </div>
           </div>
         </div>
-        <div class="step">
-          <div class="s-num">ÉTAPE 2</div>
-          <div>
-            <div class="s-ttl">Installation Active Directory</div>
-            <div class="s-txt">Installation du rôle <strong>AD Domain Services</strong> via PowerShell. Création du domaine <strong>btssio.local</strong> et promotion du serveur en contrôleur de domaine.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num">ÉTAPE 3</div>
-          <div>
-            <div class="s-ttl">Configuration DNS & DHCP</div>
-            <div class="s-txt">Installation du rôle DHCP. Création de l'étendue d'adresses IP <strong>172.16.1.50 → 172.16.1.150</strong> avec gateway et DNS configurés.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num">ÉTAPE 4</div>
-          <div>
-            <div class="s-ttl">Utilisateurs & Tests</div>
-            <div class="s-txt">Création de l'utilisateur <strong>Jean Dupont</strong>, vérification PowerShell, connexion d'un client au domaine avec attribution d'IP automatique.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num">PCA / PRA</div>
-          <div>
-            <div class="s-ttl">Plan de Continuité & Reprise</div>
-            <div class="s-txt"><strong>PCA :</strong> DC secondaire, règle DHCP 80/20, sauvegardes Windows Server Backup.<br><strong>PRA :</strong> Restauration System State, bascule sur serveur de secours — RTO &lt; 4h / RPO &lt; 24h.<br><strong>Limite :</strong> Pas de redondance matérielle dans ce TP.</div>
-          </div>
-        </div>
-      </div>
-      <div class="result">✅ Infrastructure complète opérationnelle — Active Directory, DNS, DHCP fonctionnels — Client connecté au domaine avec succès</div>
-    </div>
-  </div>
 
-  <!-- TP 2 -->
-  <div class="doc-block">
-    <div class="doc-top">
-      <div>
-        <div class="doc-tag">// Document 2 — E6</div>
-        <div class="doc-title">Évaluation — Docker & Réseaux — BTSSIO-02</div>
-        <div class="doc-sub">WAN • DMZ • LAN • Firewall iptables • NAT — 2025-2026</div>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <span class="chip chip-v">Docker</span>
-        <span class="chip chip-g">iptables</span>
-        <a href="https://nselie25-netizen.github.io/-portfolio/TP2_Docker_Reseaux_Asowa_NGUESSAN.docx" target="_blank" class="doc-lnk c">📄 Ouvrir le document</a>
-      </div>
-    </div>
-    <div class="schema-box">
-      <div class="sch-lbl">// schéma réseau — architecture déployée</div>
-      <div class="sch-row">
-        <div class="sz"><div class="sb wan"><div class="si">☁</div><div class="sl">WAN</div><div class="ss">172.30.0.0/24</div></div></div>
-        <div class="sa"><div class="saline"></div><div class="salbl">HTTP:80</div></div>
-        <div class="sz"><div class="sb fw"><div class="si">🛡</div><div class="sl">FIREWALL</div><div class="ss">iptables+NAT</div></div></div>
-        <div class="sa"><div class="saline"></div><div class="salbl">HTTP:80</div></div>
-        <div class="sz"><div class="sb dmz"><div class="si">🌐</div><div class="sl">DMZ</div><div class="ss">172.20.0.0/24</div></div></div>
-        <div class="sa"><div class="saline"></div><div class="salbl">Isolé</div></div>
-        <div class="sz"><div class="sb lan"><div class="si">🖥</div><div class="sl">LAN</div><div class="ss">172.10.0.0/24</div></div></div>
-      </div>
-    </div>
-    <div class="r-body">
-      <div class="r-intro">
-        Architecture réseau sécurisée à trois zones (WAN, DMZ, LAN) déployée avec <strong>Docker</strong> et <strong>iptables</strong>. Objectif : contrôler strictement les flux entre les zones et simuler un environnement d'entreprise avec pare-feu et NAT.
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="s-num">ÉTAPE 1</div>
-          <div>
-            <div class="s-ttl">Création des 3 réseaux Docker</div>
-            <div class="code">docker network create --subnet 172.30.0.0/24 wan_net<br>docker network create --subnet 172.20.0.0/24 dmz_net<br>docker network create --subnet 172.10.0.0/24 lan_net</div>
+        <!-- Schéma réseau -->
+        <div class="net-schema">
+          <div class="net-lbl">// Architecture réseau déployée</div>
+          <div class="net-row">
+            <div class="nz"><div class="nb wan"><div class="ni">☁</div><div class="nl">WAN</div><div class="ns">172.30.0.0/24</div></div></div>
+            <div class="na"><div class="nal"></div><div class="nlab">HTTP:80</div></div>
+            <div class="nz"><div class="nb fw"><div class="ni">🛡</div><div class="nl">FIREWALL</div><div class="ns">iptables + NAT</div></div></div>
+            <div class="na"><div class="nal"></div><div class="nlab">HTTP:80</div></div>
+            <div class="nz"><div class="nb dmz"><div class="ni">🌐</div><div class="nl">DMZ</div><div class="ns">172.20.0.0/24</div></div></div>
+            <div class="na"><div class="nal"></div><div class="nlab">Isolé</div></div>
+            <div class="nz"><div class="nb lan"><div class="ni">🖥</div><div class="nl">LAN</div><div class="ns">172.10.0.0/24</div></div></div>
           </div>
         </div>
-        <div class="step">
-          <div class="s-num">ÉTAPE 2</div>
-          <div>
-            <div class="s-ttl">Pare-feu iptables — Politique DROP + règles HTTP</div>
-            <div class="code">iptables -P FORWARD DROP<br>iptables -A FORWARD -i eth0 -o eth1 -p tcp --dport 80 -j ACCEPT<br>iptables -A FORWARD -i eth2 -o eth1 -p tcp --dport 80 -j ACCEPT<br>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num">ÉTAPE 3</div>
-          <div>
-            <div class="s-ttl">Serveur Web Nginx en DMZ</div>
-            <div class="s-txt">Déploiement Nginx dans la DMZ avec routes statiques vers le LAN (172.10.0.0/24) et le WAN (172.30.0.0/24) via le pare-feu.</div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num">ÉTAPE 4</div>
-          <div>
-            <div class="s-ttl">Clients LAN & WAN — Tests de validation</div>
-            <div class="code">docker exec -it lan_client curl http://172.20.0.3<br>docker exec -it wan_client curl http://172.20.0.3</div>
+
+        <div class="proj-body">
+          <p class="proj-summary">
+            Conception et déploiement d'une infrastructure réseau segmentée en trois zones distinctes (<strong>WAN, DMZ, LAN</strong>) via des conteneurs <strong>Docker</strong>. Mise en œuvre d'un pare-feu <strong>Alpine Linux / iptables</strong> avec politique DROP par défaut, NAT et accès contrôlé vers un serveur web <strong>Nginx</strong> hébergé en DMZ.
+          </p>
+          <div class="proj-meta">
+            <div class="proj-comp">Compétences : B1.1 · B1.2 · B1.3 · B1.4 · B1.5 · B1.6</div>
+            <a href="https://nselie25-netizen.github.io/-portfolio/TP2_Docker_Reseaux_Asowa_NGUESSAN.docx" target="_blank" class="doc-lnk v">📄 Ouvrir le document</a>
           </div>
         </div>
       </div>
-      <div class="result">✅ Architecture validée — Flux HTTP LAN→DMZ et WAN→DMZ fonctionnels — Isolation réseau effective</div>
-    </div>
-  </div>
+
+    </div><!-- /ep-card e6 -->
+  </div><!-- /ep-wrap -->
 
   <div class="pnav">
-    <button class="btn btn-g" onclick="goTo('skills')">← Compétences</button>
+    <button class="btn btn-o" onclick="goTo('skills')">← Compétences</button>
     <button class="btn btn-c" onclick="goTo('e5')">Épreuve E5 →</button>
   </div>
-  <div class="pfooter"><p>© 2026 — <span>Asowa N'GUESSAN</span></p><p>BTS SIO — Épreuve <span>E6</span></p></div>
+  <div class="pfooter">
+    <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+    <p>BTS SIO — Épreuve <span>E6</span></p>
+  </div>
 </div>
 
-<!-- PAGE 5 : ÉPREUVE E5 -->
+<!-- ══════════════════════════ PAGE 5 : ÉPREUVE E5 ══════════════════════════ -->
 <div class="page" id="page-e5">
+  <div class="ep-wrap">
 
-  <div class="ep-banner e5">
-    <div class="ep-kick">// Épreuve E5 — Parcours de professionnalisation</div>
-    <div class="ep-big">Mémoire de stage / alternance</div>
-    <div class="ep-desc">L'épreuve E5 est un mémoire professionnel rédigé à partir des missions réalisées en entreprise. Il démontre la capacité à analyser une situation réelle, mettre en œuvre des solutions adaptées et prendre du recul. Le jury évalue la qualité de l'analyse et la clarté de la rédaction.</div>
-  </div>
+    <div class="ep-card e5">
+      <div class="ep-accent"></div>
+      <div class="ep-head">
+        <div class="ep-kicker">// Épreuve E5 — Parcours de professionnalisation — Alternance 2024·2025</div>
+        <div class="ep-title">Mémoire professionnel<br>Grand Transport Ouvert</div>
+        <div class="ep-sub">Sécurisation WordPress & suivi de carburant automatisé</div>
+        <p class="ep-desc">L'épreuve E5 est un mémoire professionnel rédigé à partir des missions réalisées en entreprise. Il démontre la capacité à analyser une situation réelle et à mettre en œuvre des solutions techniques adaptées. Le jury évalue la qualité de l'analyse et la clarté de la rédaction.</p>
+      </div>
 
-  <div class="chips">
-    <span class="chip chip-v">1 mémoire officiel</span>
-    <span class="chip chip-a">Alternance 2024–2025</span>
-    <span class="chip chip-g">Grand Transport Ouvert</span>
-  </div>
+      <!-- Missions -->
+      <div class="missions-row">
+        <div class="mission">
+          <div class="mission-num">Mission 1</div>
+          <div class="mission-title">Sécurisation du site WordPress</div>
+          <div class="mission-desc">
+            Audit et sécurisation du site <strong>monchauffeurspl.fr</strong> — déploiement d'<strong>Antispam Bee</strong>, technique <strong>Honeypot (WP Armour)</strong>, liste noire d'IP malveillantes, stratégie de sauvegarde SQL.
+          </div>
+        </div>
+        <div class="mission">
+          <div class="mission-num">Mission 2</div>
+          <div class="mission-title">Suivi de carburant Excel & VBA</div>
+          <div class="mission-desc">
+            Création d'un outil de suivi automatisé de la flotte — import <strong>AS24</strong>, formules avancées, tableaux croisés dynamiques, détection d'anomalies et formulaire <strong>VBA</strong> de saisie.
+          </div>
+        </div>
+      </div>
 
-  <div class="doc-block">
-    <div class="doc-top">
-      <div>
-        <div class="doc-tag">// Document officiel — E5</div>
-        <div class="doc-title">Mémoire BTS SIO — Option SISR</div>
-        <div class="doc-sub">Sécurisation WordPress monchauffeurspl.fr & suivi de carburant — 2024/2025</div>
-      </div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
-        <span class="chip chip-v">WordPress</span>
-        <span class="chip chip-a">Excel / VBA</span>
-        <a href="https://nselie25-netizen.github.io/-portfolio/MEMOIRE_E7_Asowa_NGUESSAN.docx" target="_blank" class="doc-lnk v">📄 Ouvrir le document</a>
-      </div>
-    </div>
-    <div class="r-body">
-      <div class="r-intro v">
-        Lors de mon alternance chez <strong>Grand Transport Ouvert</strong>, deux missions principales : sécuriser le site WordPress de l'entreprise (spam massif, failles de sécurité) et créer un outil de suivi automatisé de la consommation de carburant de la flotte de véhicules.
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="s-num v">MISSION 1</div>
+      <!-- Projet E5 -->
+      <div class="proj-card p2" style="margin-bottom:2rem;">
+        <div class="proj-top">
           <div>
-            <div class="s-ttl">Sécurisation du site WordPress monchauffeurspl.fr</div>
-            <div class="s-txt">
-              <strong>Problèmes :</strong> Absence SSL, plugins obsolètes, 20+ spams Bitcoin/crypto, aucune sauvegarde.<br><br>
-              <strong>Solutions déployées :</strong><br>
-              — Mise à jour complète WordPress et plugins<br>
-              — <strong>Antispam Bee</strong> : filtre RGPD sans Captcha<br>
-              — <strong>WP Armour</strong> : technique Honeypot, champ invisible pour piéger les bots<br>
-              — Liste noire de mots-clés (btc, crypto, viagra...) et bannissement d'IP malveillantes<br>
-              — Stratégie de sauvegarde SQL régulière<br><br>
-              <strong>Résultat :</strong> élimination quasi-totale du spam.
+            <div class="proj-num">Document officiel — Épreuve E5</div>
+            <div class="proj-name">Mémoire BTS SIO — Option SISR</div>
+            <div class="proj-tagline">Sécurisation WordPress monchauffeurspl.fr & mise en place d'un suivi de carburant automatisé</div>
+            <div class="proj-chips">
+              <span class="chip chip-v">WordPress</span>
+              <span class="chip chip-v">Cybersécurité</span>
+              <span class="chip chip-a">Excel / VBA</span>
+              <span class="chip chip-g">Grand Transport Ouvert</span>
+              <span class="chip chip-a">2024 – 2025</span>
             </div>
           </div>
         </div>
-        <div class="step">
-          <div class="s-num v">MISSION 2</div>
-          <div>
-            <div class="s-ttl">Outil de suivi de carburant — Excel & VBA</div>
-            <div class="s-txt">
-              <strong>Problème :</strong> Aucun suivi de consommation, risque de vol non détectable.<br><br>
-              <strong>Réalisation :</strong><br>
-              — Import données AS24 (CSV/Excel), nettoyage des doublons et formats<br>
-              — Formules SI / RECHERCHEV / INDEX-EQUIV, calcul automatique litres/km<br>
-              — Mise en forme conditionnelle pour détecter les anomalies<br>
-              — Tableaux croisés dynamiques (TCD) par véhicule et par période<br>
-              — Formulaire VBA pour saisie automatisée et génération de rapports<br><br>
-              <strong>Résultat :</strong> gain de temps, réduction des erreurs, meilleure visibilité sur les dépenses.
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num v">BILAN</div>
-          <div>
-            <div class="s-ttl">Compétences acquises & Perspectives</div>
-            <div class="s-txt"><strong>Compétences :</strong> Cybersécurité WordPress, analyse de vulnérabilités, automatisation Excel/VBA.<br><strong>Perspectives :</strong> Activation HTTPS (SSL OVH), migration PHP 8.3, monitoring temps réel.</div>
+        <div class="proj-body">
+          <p class="proj-summary">
+            Dans le cadre de mon alternance chez <strong>Grand Transport Ouvert</strong>, j'ai sécurisé le site WordPress de l'entreprise (spam massif, failles, absence de SSL) et créé un outil <strong>Excel/VBA</strong> de suivi automatisé de la consommation de carburant de la flotte de véhicules.
+          </p>
+          <div class="proj-meta">
+            <div class="proj-comp">Compétences : B1.1 · B2.1 · B2.2 · B3.1 · B3.2</div>
+            <a href="https://nselie25-netizen.github.io/-portfolio/MEMOIRE_E7_Asowa_NGUESSAN.docx" target="_blank" class="doc-lnk v">📄 Ouvrir le mémoire</a>
           </div>
         </div>
       </div>
-      <div class="result v">✅ Site sécurisé validé — Outil carburant validé par l'entreprise — Compétences cybersécurité et automatisation acquises</div>
-    </div>
-  </div>
+
+    </div><!-- /ep-card e5 -->
+  </div><!-- /ep-wrap -->
 
   <div class="pnav">
-    <button class="btn btn-g" onclick="goTo('e6')">← Épreuve E6</button>
+    <button class="btn btn-o" onclick="goTo('e6')">← Épreuve E6</button>
     <button class="btn btn-c" onclick="goTo('conclusion')">Conclusion →</button>
   </div>
-  <div class="pfooter"><p>© 2026 — <span>Asowa N'GUESSAN</span></p><p>BTS SIO — Épreuve <span>E5</span></p></div>
+  <div class="pfooter">
+    <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+    <p>BTS SIO — Épreuve <span>E5</span></p>
+  </div>
 </div>
 
-<!-- PAGE 6 : CONCLUSION -->
+<!-- ══════════════════════════ PAGE 6 : CONCLUSION ══════════════════════════ -->
 <div class="page" id="page-conclusion">
-  <div class="lbl">Bilan</div>
-  <h2 class="ttl">Conclusion</h2>
-  <div class="q-block">« Ces projets m'ont démontré que la maîtrise technique et la réflexion méthodique sont deux piliers indissociables d'un bon administrateur système et réseau. »</div>
-  <p style="color:var(--mu2);line-height:1.85;max-width:660px;margin-bottom:2rem;font-size:.92rem;">L'épreuve E6 m'a permis de maîtriser l'infrastructure Active Directory, la segmentation réseau avec Docker et la continuité d'activité. L'épreuve E5, à travers mon alternance chez Grand Transport Ouvert, m'a confronté à des problématiques réelles de cybersécurité et d'automatisation.</p>
-  <div class="lbl" style="margin-top:0;">Objectifs de progression</div>
-  <div class="ng">
+  <div class="eyebrow">Bilan</div>
+  <h2 class="sect">Conclusion</h2>
+
+  <div class="quote">
+    « Ces réalisations m'ont démontré que la maîtrise technique et la réflexion méthodique sont deux piliers indissociables d'un bon administrateur système et réseau. »
+  </div>
+
+  <p style="color:var(--mu2);line-height:1.9;max-width:620px;margin-bottom:2rem;font-size:.9rem;">
+    L'épreuve E6 m'a permis de maîtriser l'infrastructure Active Directory, la segmentation réseau avec Docker et la continuité d'activité. L'épreuve E5, à travers mon alternance chez Grand Transport Ouvert, m'a confronté à des problématiques réelles de cybersécurité et d'automatisation.
+  </p>
+
+  <div class="eyebrow" style="margin-top:0;">Objectifs de progression</div>
+  <div class="nc-grid">
     <div class="nc"><div class="ndot"></div><div><strong>Haute disponibilité</strong><span>Clusters, failover, load balancing</span></div></div>
     <div class="nc"><div class="ndot"></div><div><strong>Supervision réseau</strong><span>Zabbix, Nagios, Grafana</span></div></div>
-    <div class="nc"><div class="ndot"></div><div><strong>Sécurité avancée</strong><span>VPN, IDS/IPS, VLAN</span></div></div>
+    <div class="nc"><div class="ndot"></div><div><strong>Sécurité avancée</strong><span>VPN, IDS/IPS, VLAN, pare-feu NGN</span></div></div>
     <div class="nc"><div class="ndot"></div><div><strong>Cloud & DevOps</strong><span>Azure, Kubernetes, CI/CD</span></div></div>
   </div>
+
   <div class="pnav" style="margin-top:2rem;">
-    <button class="btn btn-g" onclick="goTo('home')">← Retour à l'accueil</button>
+    <button class="btn btn-o" onclick="goTo('home')">← Retour à l'accueil</button>
   </div>
-  <div class="pfooter"><p>© 2026 — <span>Asowa N'GUESSAN</span> — Portfolio BTS SIO SISR</p><p>Épreuves <span>E6</span> & <span>E5</span></p></div>
+  <div class="pfooter">
+    <p>© 2026 — <span>Asowa N'GUESSAN</span> — Portfolio BTS SIO SISR</p>
+    <p>Épreuves <span>E6</span> & <span>E5</span></p>
+  </div>
 </div>
 
-</div>
+</div><!-- /wrap -->
 
 <script>
-const pages=['home','about','skills','e6','e5','conclusion'];
-let cur='home',busy=false;
-function goTo(id){
-  if(id===cur||busy)return;
-  busy=true;
-  document.getElementById('page-'+cur).classList.add('out');
-  setTimeout(()=>{
-    document.getElementById('page-'+cur).classList.remove('active','out');
-    const n=document.getElementById('page-'+id);
+const pages = ['home','about','skills','e6','e5','conclusion'];
+let cur = 'home', busy = false;
+
+function goTo(id) {
+  if (id === cur || busy) return;
+  busy = true;
+  document.getElementById('page-' + cur).classList.add('out');
+  setTimeout(() => {
+    document.getElementById('page-' + cur).classList.remove('active','out');
+    const n = document.getElementById('page-' + id);
     n.classList.add('active');
-    n.scrollTop=0;
-    busy=false;
-  },380);
-  document.getElementById('nav-'+cur).classList.remove('active');
-  document.getElementById('nav-'+id).classList.add('active');
-  const dots=document.querySelectorAll('.idot');
+    n.scrollTop = 0;
+    busy = false;
+  }, 420);
+  document.getElementById('nav-' + cur).classList.remove('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  const dots = document.querySelectorAll('.idot');
   dots[pages.indexOf(cur)].classList.remove('active');
   dots[pages.indexOf(id)].classList.add('active');
-  cur=id;
+  cur = id;
 }
-document.addEventListener('keydown',e=>{
-  const i=pages.indexOf(cur);
-  if((e.key==='ArrowRight'||e.key==='ArrowDown')&&i<pages.length-1)goTo(pages[i+1]);
-  if((e.key==='ArrowLeft'||e.key==='ArrowUp')&&i>0)goTo(pages[i-1]);
+
+// Clavier
+document.addEventListener('keydown', e => {
+  const i = pages.indexOf(cur);
+  if ((e.key==='ArrowRight'||e.key==='ArrowDown') && i < pages.length-1) goTo(pages[i+1]);
+  if ((e.key==='ArrowLeft'||e.key==='ArrowUp') && i > 0) goTo(pages[i-1]);
 });
-let sx=0;
-document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;},{passive:true});
-document.addEventListener('touchend',e=>{
-  const dx=e.changedTouches[0].clientX-sx,i=pages.indexOf(cur);
-  if(dx<-60&&i<pages.length-1)goTo(pages[i+1]);
-  if(dx>60&&i>0)goTo(pages[i-1]);
+
+// Swipe mobile
+let sx = 0;
+document.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - sx, i = pages.indexOf(cur);
+  if (dx < -60 && i < pages.length-1) goTo(pages[i+1]);
+  if (dx > 60 && i > 0) goTo(pages[i-1]);
 });
 </script>
 </body>
