@@ -578,7 +578,8 @@ h2.sect {
     <li><a onclick="goTo('skills')" id="nav-skills"><span class="nn">03</span>&nbsp;Compétences</a></li>
     <li><a onclick="goTo('e6')" id="nav-e6"><span class="nn">04</span>&nbsp;Épreuve E6</a></li>
     <li><a onclick="goTo('e5')" id="nav-e5"><span class="nn">05</span>&nbsp;Épreuve E5</a></li>
-    <li><a onclick="goTo('conclusion')" id="nav-conclusion"><span class="nn">06</span>&nbsp;Conclusion</a></li>
+    <li><a onclick="goTo('veille')" id="nav-veille"><span class="nn">06</span>&nbsp;Veille</a></li>
+    <li><a onclick="goTo('conclusion')" id="nav-conclusion"><span class="nn">07</span>&nbsp;Conclusion</a></li>
   </ul>
 </nav>
 
@@ -588,6 +589,7 @@ h2.sect {
   <div class="idot" onclick="goTo('skills')"></div>
   <div class="idot" onclick="goTo('e6')"></div>
   <div class="idot" onclick="goTo('e5')"></div>
+  <div class="idot" onclick="goTo('veille')"></div>
   <div class="idot" onclick="goTo('conclusion')"></div>
 </div>
 
@@ -1111,7 +1113,7 @@ h2.sect {
   </div>
 
   <div class="pnav" style="margin-top:2rem;">
-    <button class="btn btn-o" onclick="goTo('home')">← Retour à l'accueil</button>
+    <button class="btn btn-o" onclick="goTo('veille')">← Veille</button>
   </div>
   <div class="pfooter">
     <p>© 2026 — <span>Asowa N'GUESSAN</span> — Portfolio BTS SIO SISR</p>
@@ -1119,10 +1121,294 @@ h2.sect {
   </div>
 </div>
 
+<!-- ══════════════════════════ PAGE 6 : VEILLE ══════════════════════════ -->
+<div class="page" id="page-veille">
+  <div class="eyebrow">Veille informatique</div>
+  <h2 class="sect" style="margin-bottom:.3rem;">Intelligence Artificielle</h2>
+  <p style="color:var(--mu2);font-size:.9rem;margin-bottom:2.5rem;font-style:italic;">Suivi des évolutions technologiques liées à l'IA — 2025/2026</p>
+
+  <!-- INTRO -->
+  <div style="background:linear-gradient(135deg,rgba(168,85,247,.07),rgba(244,114,182,.04));border:1px solid rgba(168,85,247,.2);border-radius:14px;padding:1.5rem 2rem;margin-bottom:2.5rem;border-left:3px solid #a855f7;">
+    <p style="color:var(--mu2);font-size:.9rem;line-height:1.85;">
+      L'IA est aujourd'hui présente dans de nombreux domaines : l'éducation, la cybersécurité, les entreprises et le développement informatique. Cette veille a pour but de comprendre ses <strong style="color:var(--wh2)">évolutions récentes</strong>, ses <strong style="color:var(--wh2)">avantages</strong>, ses <strong style="color:var(--wh2)">risques</strong> et son impact sur les <strong style="color:var(--wh2)">métiers de l'informatique</strong>.
+    </p>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="eyebrow">Sources utilisées</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2.5rem;">
+
+    <!-- Le Monde Informatique -->
+    <a href="https://www.lemondeinformatique.fr" target="_blank" style="text-decoration:none;">
+      <div style="background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:all .25s;cursor:pointer;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(168,85,247,.15)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
+        <img src="https://www.lemondeinformatique.fr/images/logos/logo-lmi.svg" alt="LMI" style="height:32px;object-fit:contain;filter:brightness(1.2);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:44px;height:44px;background:linear-gradient(135deg,#a855f7,#ec4899);border-radius:10px;align-items:center;justify-content:center;font-size:18px;">📰</div>
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--wh2);">Le Monde Informatique</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:2px;font-family:'JetBrains Mono',monospace;">actualités tech</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Clubic -->
+    <a href="https://www.clubic.com" target="_blank" style="text-decoration:none;">
+      <div style="background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(168,85,247,.15)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
+        <img src="https://cdn.clubic.com/assets/img/logo-clubic.svg" alt="Clubic" style="height:32px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:44px;height:44px;background:linear-gradient(135deg,#f472b6,#fb923c);border-radius:10px;align-items:center;justify-content:center;font-size:18px;">💻</div>
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--wh2);">Clubic</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:2px;font-family:'JetBrains Mono',monospace;">tech & numérique</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Pix -->
+    <a href="https://pix.fr" target="_blank" style="text-decoration:none;">
+      <div style="background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(168,85,247,.15)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
+        <img src="https://pix.fr/images/pix-logo.svg" alt="Pix" style="height:32px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:44px;height:44px;background:linear-gradient(135deg,#a855f7,#f472b6);border-radius:10px;align-items:center;justify-content:center;font-size:18px;">🎓</div>
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--wh2);">Pix</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:2px;font-family:'JetBrains Mono',monospace;">compétences numériques</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Google Alerts -->
+    <a href="https://www.google.fr/alerts" target="_blank" style="text-decoration:none;">
+      <div style="background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(168,85,247,.15)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
+        <img src="https://www.gstatic.com/images/branding/product/2x/googleg_48dp.png" alt="Google" style="height:32px;width:32px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:44px;height:44px;background:linear-gradient(135deg,#fb923c,#f472b6);border-radius:10px;align-items:center;justify-content:center;font-size:18px;">🔔</div>
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--wh2);">Google Alerts</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:2px;font-family:'JetBrains Mono',monospace;">veille automatique</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Reddit -->
+    <a href="https://www.reddit.com/r/artificial" target="_blank" style="text-decoration:none;">
+      <div style="background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(168,85,247,.15)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
+        <img src="https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png" alt="Reddit" style="height:32px;width:32px;object-fit:contain;border-radius:6px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:44px;height:44px;background:linear-gradient(135deg,#fb923c,#f472b6);border-radius:10px;align-items:center;justify-content:center;font-size:18px;">💬</div>
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--wh2);">Reddit</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:2px;font-family:'JetBrains Mono',monospace;">communauté dev & IA</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com" target="_blank" style="text-decoration:none;">
+      <div style="background:var(--sur);border:1px solid var(--brd);border-radius:12px;padding:1.25rem;display:flex;flex-direction:column;align-items:center;gap:.75rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(168,85,247,.15)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)';this.style.boxShadow='none'">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="height:32px;width:32px;object-fit:contain;border-radius:6px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:44px;height:44px;background:linear-gradient(135deg,#0077b5,#a855f7);border-radius:10px;align-items:center;justify-content:center;font-size:18px;">💼</div>
+        <div style="text-align:center;">
+          <div style="font-size:12px;font-weight:600;color:var(--wh2);">LinkedIn</div>
+          <div style="font-size:10px;color:var(--mu);margin-top:2px;font-family:'JetBrains Mono',monospace;">réseau professionnel</div>
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- OUTILS DE VEILLE -->
+  <div class="eyebrow" style="margin-top:2.5rem;">Outils de veille utilisés</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:2.5rem;">
+
+    <div style="background:var(--sur);border:1px solid var(--brd);border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;">
+      <img src="https://www.gstatic.com/images/branding/product/2x/googleg_48dp.png" alt="Google Alerts" style="height:28px;width:28px;object-fit:contain;" onerror="this.style.display='none'">
+      <div style="font-size:11.5px;font-weight:600;color:var(--wh2);text-align:center;">Google Alerts</div>
+      <div style="font-size:9.5px;color:var(--mu);font-family:'JetBrains Mono',monospace;text-align:center;">veille automatique</div>
+    </div>
+
+    <div style="background:var(--sur);border:1px solid var(--brd);border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;">
+      <div style="font-size:24px;">📡</div>
+      <div style="font-size:11.5px;font-weight:600;color:var(--wh2);text-align:center;">Flux RSS</div>
+      <div style="font-size:9.5px;color:var(--mu);font-family:'JetBrains Mono',monospace;text-align:center;">agrégateur d'articles</div>
+    </div>
+
+    <div style="background:var(--sur);border:1px solid var(--brd);border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Youtube_logo.png" alt="YouTube" style="height:22px;object-fit:contain;" onerror="this.style.display='none'">
+      <div style="font-size:11.5px;font-weight:600;color:var(--wh2);text-align:center;">YouTube</div>
+      <div style="font-size:9.5px;color:var(--mu);font-family:'JetBrains Mono',monospace;text-align:center;">vidéos tech & IA</div>
+    </div>
+
+    <div style="background:var(--sur);border:1px solid var(--brd);border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" style="height:28px;width:28px;object-fit:contain;border-radius:4px;" onerror="this.style.display='none'">
+      <div style="font-size:11.5px;font-weight:600;color:var(--wh2);text-align:center;">LinkedIn</div>
+      <div style="font-size:9.5px;color:var(--mu);font-family:'JetBrains Mono',monospace;text-align:center;">réseau pro</div>
+    </div>
+
+    <div style="background:var(--sur);border:1px solid var(--brd);border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;grid-column:span 2;">
+      <img src="https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png" alt="Reddit" style="height:28px;width:28px;object-fit:contain;border-radius:6px;" onerror="this.style.display='none'">
+      <div style="font-size:11.5px;font-weight:600;color:var(--wh2);text-align:center;">Reddit</div>
+      <div style="font-size:9.5px;color:var(--mu);font-family:'JetBrains Mono',monospace;text-align:center;">forums & avis utilisateurs</div>
+    </div>
+
+    <div style="background:var(--sur);border:1px solid var(--brd);border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;grid-column:span 2;">
+      <div style="font-size:24px;">👨‍💻</div>
+      <div style="font-size:11.5px;font-weight:600;color:var(--wh2);text-align:center;">Communautés dev</div>
+      <div style="font-size:9.5px;color:var(--mu);font-family:'JetBrains Mono',monospace;text-align:center;">développeurs & experts</div>
+    </div>
+
+  </div>
+
+  <!-- DÉCOUVERTES -->
+  <div class="eyebrow">Ce que j'ai découvert</div>
+
+  <!-- DÉCOUVERTE A -->
+  <div style="background:var(--sur);border:1px solid var(--brd);border-radius:14px;overflow:hidden;margin-bottom:1.25rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(168,85,247,.35)'" onmouseout="this.style.borderColor='var(--brd)'">
+    <div style="display:flex;align-items:stretch;">
+      <div style="width:4px;background:linear-gradient(180deg,#a855f7,#ec4899);flex-shrink:0;"></div>
+      <div style="padding:1.4rem 1.75rem;flex:1;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:.75rem;">
+          <div style="width:34px;height:34px;background:rgba(168,85,247,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;">🎓</div>
+          <div style="flex:1;">
+            <div style="font-size:10px;color:#a855f7;font-family:'JetBrains Mono',monospace;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px;">Découverte A</div>
+            <div style="font-size:14px;font-weight:600;color:var(--wh2);">L'IA s'impose dans l'éducation</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+            <img src="https://pix.fr/images/pix-logo.svg" alt="Pix" style="height:18px;object-fit:contain;opacity:.8;" onerror="this.style.display='none'">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);">pix.fr</span>
+          </div>
+        </div>
+        <p style="font-size:.87rem;color:var(--mu2);line-height:1.75;margin-bottom:.75rem;">En 2026, la plateforme <strong style="color:var(--wh2)">Pix</strong> a lancé des parcours obligatoires sur l'intelligence artificielle. Plus de <strong style="color:#a855f7">1,5 million d'élèves</strong> seront formés à l'utilisation responsable de l'IA.</p>
+        <div style="font-size:11px;color:var(--mu);font-style:italic;">→ Cela montre que l'IA devient une compétence importante dans les études et le monde professionnel.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÉCOUVERTE B -->
+  <div style="background:var(--sur);border:1px solid var(--brd);border-radius:14px;overflow:hidden;margin-bottom:1.25rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(244,114,182,.35)'" onmouseout="this.style.borderColor='var(--brd)'">
+    <div style="display:flex;align-items:stretch;">
+      <div style="width:4px;background:linear-gradient(180deg,#f472b6,#fb923c);flex-shrink:0;"></div>
+      <div style="padding:1.4rem 1.75rem;flex:1;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:.75rem;">
+          <div style="width:34px;height:34px;background:rgba(244,114,182,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;">🔒</div>
+          <div style="flex:1;">
+            <div style="font-size:10px;color:#f472b6;font-family:'JetBrains Mono',monospace;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px;">Découverte B</div>
+            <div style="font-size:14px;font-weight:600;color:var(--wh2);">L'IA améliore la cybersécurité</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+            <img src="https://www.gstatic.com/images/branding/product/2x/googleg_48dp.png" alt="Google" style="height:18px;width:18px;object-fit:contain;opacity:.8;" onerror="this.style.display='none'">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);">google.com</span>
+          </div>
+        </div>
+        <p style="font-size:.87rem;color:var(--mu2);line-height:1.75;margin-bottom:.75rem;">Des entreprises utilisent maintenant l'IA pour :</p>
+        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:.75rem;padding-left:1rem;">
+          <div style="font-size:12.5px;color:var(--mu2);display:flex;align-items:center;gap:8px;"><span style="color:#f472b6;">▸</span> Détecter les cyberattaques</div>
+          <div style="font-size:12.5px;color:var(--mu2);display:flex;align-items:center;gap:8px;"><span style="color:#f472b6;">▸</span> Analyser les comportements suspects</div>
+          <div style="font-size:12.5px;color:var(--mu2);display:flex;align-items:center;gap:8px;"><span style="color:#f472b6;">▸</span> Protéger les réseaux informatiques</div>
+        </div>
+        <div style="background:rgba(244,114,182,.07);border:1px solid rgba(244,114,182,.18);border-radius:8px;padding:.75rem 1rem;font-size:12px;color:var(--mu2);line-height:1.7;">
+          <strong style="color:var(--wh2);">Google</strong> a présenté une plateforme appelée <strong style="color:#f472b6;">« Unified Security »</strong> utilisant l'IA pour détecter automatiquement des menaces informatiques.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DÉCOUVERTE C -->
+  <div style="background:var(--sur);border:1px solid var(--brd);border-radius:14px;overflow:hidden;margin-bottom:2.5rem;transition:all .25s;" onmouseover="this.style.borderColor='rgba(251,146,60,.35)'" onmouseout="this.style.borderColor='var(--brd)'">
+    <div style="display:flex;align-items:stretch;">
+      <div style="width:4px;background:linear-gradient(180deg,#fb923c,#a855f7);flex-shrink:0;"></div>
+      <div style="padding:1.4rem 1.75rem;flex:1;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:.75rem;">
+          <div style="width:34px;height:34px;background:rgba(251,146,60,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;">⚡</div>
+          <div style="flex:1;">
+            <div style="font-size:10px;color:#fb923c;font-family:'JetBrains Mono',monospace;letter-spacing:.15em;text-transform:uppercase;margin-bottom:2px;">Découverte C</div>
+            <div style="font-size:14px;font-weight:600;color:var(--wh2);">Les développeurs utilisent de plus en plus l'IA</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+            <img src="https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png" alt="Reddit" style="height:18px;width:18px;object-fit:contain;border-radius:4px;opacity:.8;" onerror="this.style.display='none'">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);">reddit.com</span>
+          </div>
+        </div>
+        <p style="font-size:.87rem;color:var(--mu2);line-height:1.75;margin-bottom:.75rem;">Les développeurs utilisent désormais des IA pour :</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:.75rem;padding-left:1rem;">
+          <div style="font-size:12.5px;color:var(--mu2);display:flex;align-items:center;gap:8px;"><span style="color:#fb923c;">▸</span> Générer du code</div>
+          <div style="font-size:12.5px;color:var(--mu2);display:flex;align-items:center;gap:8px;"><span style="color:#fb923c;">▸</span> Corriger des erreurs</div>
+          <div style="font-size:12.5px;color:var(--mu2);display:flex;align-items:center;gap:8px;"><span style="color:#fb923c;">▸</span> Gagner du temps</div>
+          <div style="font-size:12.5px;color:var(--mu2);display:flex;align-items:center;gap:8px;"><span style="color:#fb923c;">▸</span> Automatiser des tâches</div>
+        </div>
+        <div style="font-size:11px;color:var(--mu);font-style:italic;">→ Sur Reddit, plusieurs développeurs expliquent que l'IA devient un outil de productivité très utilisé dans le développement informatique.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AVANTAGES / RISQUES -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2.5rem;">
+    <div style="background:rgba(168,85,247,.05);border:1px solid rgba(168,85,247,.2);border-radius:12px;padding:1.5rem;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#a855f7;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;">✦ Avantages</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;">→</span> Gain de temps & automatisation</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;">→</span> Aide à la programmation</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;">→</span> Renforcement de la cybersécurité</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;">→</span> Assistance éducation & médecine</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;">→</span> Efficacité pour les entreprises</div>
+      </div>
+    </div>
+    <div style="background:rgba(244,114,182,.05);border:1px solid rgba(244,114,182,.2);border-radius:12px;padding:1.5rem;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#f472b6;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1rem;">⚠ Risques</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#f472b6;">→</span> Suppression de certains emplois</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#f472b6;">→</span> Diffusion de fausses informations</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#f472b6;">→</span> Dépendance technologique</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#f472b6;">→</span> Risques sur la confidentialité</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--mu2);"><span style="color:#f472b6;">→</span> Cyberattaques plus sophistiquées</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTEURS IA -->
+  <div class="eyebrow">Acteurs majeurs de l'IA</div>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem;">
+    <a href="https://openai.com" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:var(--sur);border:1px solid var(--brd);border-radius:8px;padding:.6rem 1.1rem;transition:all .2s;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)'">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg" alt="OpenAI" style="height:18px;filter:invert(1);opacity:.9;" onerror="this.style.display='none'">
+      <span style="font-size:12px;font-weight:600;color:var(--wh2);">OpenAI</span>
+    </a>
+    <a href="https://gemini.google.com" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:var(--sur);border:1px solid var(--brd);border-radius:8px;padding:.6rem 1.1rem;transition:all .2s;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)'">
+      <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" alt="Gemini" style="height:18px;" onerror="this.style.display='none'">
+      <span style="font-size:12px;font-weight:600;color:var(--wh2);">Google Gemini</span>
+    </a>
+    <a href="https://mistral.ai" target="_blank" style="text-decoration:none;display:flex;align-items:center;gap:8px;background:var(--sur);border:1px solid var(--brd);border-radius:8px;padding:.6rem 1.1rem;transition:all .2s;" onmouseover="this.style.borderColor='rgba(168,85,247,.4)';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='var(--brd)';this.style.transform='translateY(0)'">
+      <img src="https://mistral.ai/images/mistral-logo.svg" alt="Mistral" style="height:18px;" onerror="this.style.display='none'">
+      <span style="font-size:12px;font-weight:600;color:var(--wh2);">Mistral AI</span>
+    </a>
+  </div>
+
+  <!-- CE QUE CA M'A APPORTÉ -->
+  <div style="background:rgba(168,85,247,.05);border:1px solid rgba(168,85,247,.18);border-radius:12px;padding:1.5rem 2rem;margin-bottom:1.25rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#a855f7;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;">Ce que cette veille m'a apporté</div>
+    <div style="display:flex;flex-direction:column;gap:7px;">
+      <div style="display:flex;gap:8px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;flex-shrink:0;">→</span> Découvrir les nouvelles technologies liées à l'IA</div>
+      <div style="display:flex;gap:8px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;flex-shrink:0;">→</span> Mieux comprendre les enjeux de la cybersécurité</div>
+      <div style="display:flex;gap:8px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;flex-shrink:0;">→</span> Apprendre à rechercher des informations fiables</div>
+      <div style="display:flex;gap:8px;font-size:12.5px;color:var(--mu2);"><span style="color:#a855f7;flex-shrink:0;">→</span> Suivre l'évolution du monde informatique</div>
+    </div>
+  </div>
+
+  <!-- CONCLUSION VEILLE -->
+  <div style="background:linear-gradient(135deg,rgba(168,85,247,.08),rgba(244,114,182,.05),rgba(251,146,60,.04));border:1px solid rgba(168,85,247,.22);border-radius:14px;border-left:3px solid #a855f7;padding:1.75rem 2rem;margin-bottom:2rem;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#a855f7;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem;">// Conclusion</div>
+    <p style="font-size:.9rem;color:var(--wh2);line-height:1.85;margin-bottom:.75rem;font-style:italic;">« L'intelligence artificielle est aujourd'hui une technologie incontournable. Elle transforme l'éducation, la cybersécurité et le développement informatique. »</p>
+    <p style="font-size:.87rem;color:var(--mu2);line-height:1.8;">Même si elle présente certains risques, elle offre aussi de nombreuses opportunités pour les entreprises et les professionnels de l'informatique. Il est donc important de continuer à suivre son évolution grâce à la veille informatique.</p>
+  </div>
+
+  <div class="pnav">
+    <button class="btn btn-o" onclick="goTo('e5')">← Épreuve E5</button>
+    <button class="btn btn-c" onclick="goTo('conclusion')">Conclusion →</button>
+  </div>
+  <div class="pfooter">
+    <p>© 2026 — <span>Asowa N'GUESSAN</span></p>
+    <p>Veille — <span>Intelligence Artificielle</span></p>
+  </div>
+</div>
+
 </div><!-- /wrap -->
 
 <script>
-const pages = ['home','about','skills','e6','e5','conclusion'];
+const pages = ['home','about','skills','e6','e5','veille','conclusion'];
 let cur = 'home', busy = false;
 
 function goTo(id) {
